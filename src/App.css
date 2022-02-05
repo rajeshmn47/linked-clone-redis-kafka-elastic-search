@@ -1,5 +1,6 @@
-.App {
-  text-align: center;
+*,h1,h2,h3{
+  margin:0;
+  padding:0;
 }
 
 .App-logo {
@@ -22,8 +23,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  color: rgb(119, 28, 28);
 }
-
+a{
+  text-decoration: none;
+}
 .App-link {
   color: #61dafb;
 }
