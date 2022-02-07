@@ -66,8 +66,9 @@ router.post("/login", async function(req, res, next) {
       });
     });
 })
-router.post("/getusers", async function(req, res, next) {
+router.get("/getusers", async function(req, res, next) {
   const a=await User.find()
+  console.log(a)
   res.status(200).json({
     message: "internal server error",users:a
   });
