@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {AppBar,TextField,Button} from '@material-ui/core'
 import '../App.css'
 import im from '../images/table.jpeg'
@@ -10,8 +10,20 @@ import FindInPageIcon from '@material-ui/icons/FindInPage';
 import axios from 'axios'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {useNavigate} from 'react-router-dom'
 
 export const Login=()=>{
+    const navigate=useNavigate()
+
+useEffect(() => {
+ if(localStorage.getItem('servertoken')){
+     navigate('/register')
+ }
+     else{
+         console.log('ok rahesh')
+     }
+   
+  }, []);
 const [user,setUser]=useState()
     const[email,setEmail]=useState('')
     const [password,setPassword]=useState('')
@@ -22,7 +34,8 @@ const [user,setUser]=useState()
             email:email,
           };
        const g=await axios.post("http://127.0.0.1:3001/auth/login", newPost);
-       console.log(g)
+
+      
         }
     return(
         <>
@@ -66,6 +79,9 @@ Sign<span  style={{marginLeft:'1vmax'}}>in</span></button></div>
    <img src={im} height='500'/>
  </div>
 </div>
+
+
+
 </>
     )
 }

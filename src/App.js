@@ -4,6 +4,7 @@ import './App.css'
 import im from './images/table.jpeg'
 import Login from './components/Login'
 import Register from './components/Register'
+import Connections from './components/Connections'
 import {BrowserRouter,Routes,Route,Link,useNavigate} from 'react-router-dom'
 import {useEffect} from 'react'
 
@@ -19,6 +20,7 @@ const App = () => {
 <Routes>
   <Route path='/' element={<Login/>}/>
   <Route path='/register' element={<Register/>}/>
+  <Route path='/connections' element={<Connections/>}/>
 </Routes>
 </BrowserRouter>
 </>
