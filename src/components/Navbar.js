@@ -5,8 +5,9 @@ import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 
 export const Navbar=(user,logout)=>{
+    console.log(user.user.email,logout)
     return(
-        <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',padding:'1vmax',position:'fixed',width:'100vw'}}>
+        <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',alignItems:'center',padding:'1vmax',position:'fixed',width:'100vw'}}>
         <div style={{flex:1,marginTop:'0px',}}>
         <h3 style={{color:'blue'}}>Linked<span style={{backgroundColor:'blue',color:'white',marginLeft:'2px'}}>in</span></h3>
             </div>
@@ -18,15 +19,16 @@ export const Navbar=(user,logout)=>{
             <LocalLibraryIcon/>Learning</div>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}><WorkIcon/>Jobs</div>
         </div>
-        <div style={{flex:1,margin:'5px',height:'1vmax',opacity:'0.5',}}>
+        <div style={{flex:0.5,margin:'5px',height:'1vmax',opacity:'0.5',}}>
         <span style={{borderLeft:'1px solid black',marginRight:'3px'}}></span>
         join now</div>
-        <div style={{flex:1,padding:'5px'}}><button style={{outline:'none',backgroundColor:'white',border:'1px solid blue',
+        <div style={{flex:2,padding:'5px'}}><button style={{outline:'none',backgroundColor:'white',border:'1px solid blue',
         color:'blue',borderRadius:'10px',padding:'2px'}}>
-        Sign<span  style={{marginLeft:'1vmax'}}>in</span></button></div>
+        Sign<span  style={{marginLeft:'1vmax'}}>in</span></button> </div>
         <div style={{height:'4vmax',width:'10vw',alignItems:'center',padding:'0px 20px',display:'flex',justifyContent:'space-between'}}>
-            <div style={{alignItems:'flex-end',float:'right'}}>U Are logged in as {user.email}</div>
+            <div style={{alignItems:'flex-end',float:'right'}}>U Are {user.user.email}</div>
             <div onClick={logout}>Logout</div>
+       
         </div>
         </div>
 
