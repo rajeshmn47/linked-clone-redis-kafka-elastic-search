@@ -129,26 +129,39 @@ router.post('/friendrequest',async function(req,res,next){
 })
 
 router.post('/addreq',async function (req,res,next){
- 
- const user =await User.findOne({
-    email:{$eq:req.body.from } }
-    )
-  const email=req.body.to.email
-  const first_name=req.body.to.first_name
-  const last_name=req.body.to.last_name
-  const job_title=req.body.to.job_title
-  console.log(email,first_name,last_name,job_title)
-  const waitin={email:email,first_name:first_name,last_name:last_name,job_title:job_title}
-    console.log(user)
- user.waiting.push(waitin)
-    console.log(user)
+  console.log(req.body.from)
+    var data=await User.findOne({email:req.body.from})
 
-    await user.save()
-   console.log(user)
-    
+      var existingWaitingList = data.waiting;
+    var k=[]
+      for(var i=0;i<existingWaitingList.length;i++){
+        k.push(existingWaitingList[i].email)
+        if(existingWaitingList[i].email===req.body.to.email)
+     {
+          existingWaitingList.splice(i,2); 
+          var dataChange={$set:{waiting: existingWaitingList }}
+          await User.updateOne({email:req.body.from},dataChange)
+        }
+     } 
+    console.log(k)
+    console.log(k.length)
+    console.log((!(k.includes(req.body.to.email))))
+    if(!(k.includes(req.body.to.email))){
+      const email=req.body.to.email
+      const first_name=req.body.to.first_name
+      const last_name=req.body.to.last_name
+      const job_title=req.body.to.job_title
+      console.log(email,first_name,last_name,job_title)
+      const waitin={email:email,first_name:first_name,last_name:last_name,job_title:job_title}
+        console.log(data)
+     data.waiting.push(waitin)
+        console.log(data)
+        await data.save()
+       console.log(data)
+      }
   res.status(200).json({
     message: "internal server error"
-  });
+  })
 })
 
 router.get("/loaduser",checkloggedinuser,async function(req, res, next) {
