@@ -2,28 +2,47 @@ import {useState,useEffect} from 'react'
 import axios from 'axios'
 import { Details } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
+import { StepConnector } from '@material-ui/core';
 
 export const Connections=()=>{
 const navigate=useNavigate()
 const [users,setUsers]=useState([])
 const [user,setUser]=useState()
-
+const [pendinglist,setPendinglist]=useState([])
 const headers = {
     'Accept': 'application/json'
 };
+
+
      useEffect(async() => {
          if(!localStorage.getItem('server_token')){navigate('/')}
-        const servertoken=localStorage.getItem('server_token')&&localStorage.getItem('server_token')
-        console.log(servertoken)  
+         const servertoken=localStorage.getItem('server_token')&&localStorage.getItem('server_token') 
+         axios("http://127.0.0.1:3001/auth/loaduser", 
+         {method:'get',headers: { ...headers,'Content-Type': 'application/json',servertoken:servertoken }}).then((response)=>{
+             console.log(response.data.message[0])
+             setUser(response.data.message[0])})
+          
+    
         axios("http://127.0.0.1:3001/auth/getusers", 
         {method:'get',headers: { ...headers,'Content-Type': 'application/json',servertoken:servertoken }}).then((response)=>{
             console.log(response.data.users)
             setUsers(response.data.users)})    
-        axios("http://127.0.0.1:3001/auth/loaduser", 
-        {method:'get',headers: { ...headers,'Content-Type': 'application/json',servertoken:servertoken }}).then((response)=>{
-            console.log(response.data.message[0])
-            setUser(response.data.message[0])})
+     
+      
+    
        }, []);
+    useEffect(()=>{
+        const pend=[]
+        console.log(user)
+        {user&&user.waiting.map((m)=>pend.push(m.email))}
+        {user&&setPendinglist(()=>pend)}
+        console.log(pendinglist)
+        console.log('rajesh')
+    },[user])
+       const pendinglist1=()=>{
+      console.log(user)
+     
+    } 
 const Ira=({use})=>{
 const sendrequest= async(email)=>{
  await axios.post("http://127.0.0.1:3001/auth/friendrequest",{'to':email,'from':'rajeshmn4567@gmail.com'})      
@@ -50,32 +69,26 @@ const logout=(e)=>{
     localStorage.removeItem('server_token')
     navigate('/')
 }
-const Usercard= ({from,usermail})=>{
-    const [connec,setConnec]=useState('connect')
-    console.log(from.waiting,usermail.email)
+const Usercard= ({from,usermail,pendinglist})=>{
+    const [connec,setConnec]=useState(false)
+   
+    console.log(pendinglist.includes(usermail.email))
 const[liked,setLiked]=useState(false)
-const sw = new Map([['X', 'O'], ['O', 'X']]);
-const w=sw.get('O');
-console.log(w)
-const [pendinglist,setPendinglist]=useState([])
-const pendinglist1=()=>{
-    const pend=[]
-    from.waiting.map((m)=>pend.push(m.email))
-    setPendinglist(pend)
-    console.log(pendinglist)
-}
-
+useEffect(()=>{
+setConnec((pendinglist.includes(usermail.email)))
+},[])
 const connect=async(emai)=>{
-  pendinglist1()
     console.log(emai)
-    setConnec('connection request')
     const to={email:usermail.email,first_name:usermail.first_name,last_name:'kaiser',job_title:'cricketer'}
-    await axios.post('http://127.0.0.1:3001/auth/addreq',{from:from,to:to})
+    await axios.post('http://127.0.0.1:3001/auth/addreq',{from:from.email,to:to})
+    setConnec(!connec)
+    const servertoken=localStorage.getItem('server_token')&&localStorage.getItem('server_token')
+  
 }
 const [likedby,setLikedby]=useState(10)
 
 const likeit= async()=>{
-    await axios.post('http://127.0.0.1:3001/auth/addreq',{from:from,to:usermail})
+    await axios.post('http://127.0.0.1:3001/auth/addreq',{from:from.email,to:usermail})
 setLiked(!liked)
 if (!liked){
 setLikedby(likedby+1)
@@ -87,8 +100,8 @@ if (liked){
 
     return(
         <>
-      
-        <button className='buttons' onClick={()=>connect(usermail.email)}>{pendinglist.includes(usermail.email)?'connection sent':connec}</button>
+     
+        <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'connection sent':'connect'}</button>
         <button className={liked?'butter':'buttons'} onClick={()=>likeit()}>{liked?'unlike':'like'}</button>
         </>
     )
@@ -108,7 +121,7 @@ if (liked){
         <>
         <p>{item.email}{index}</p>
        
-        {user&&<Usercard  k='liked' from={user}  usermail={item}/>}
+        {user&&<Usercard  k='liked' from={user}  usermail={item} pendinglist={pendinglist}/>}
         
         <button className='buttons' onClick={()=>Details(index)}>getdetails</button></>)}
         </div>
