@@ -1,6 +1,6 @@
 var mongoose =require('mongoose');
 
-var userschema = mongoose.Schema({
+var userschema123 = mongoose.Schema({
     applicant_id : {
       type: String
     },
@@ -104,6 +104,6 @@ var userschema = mongoose.Schema({
 
 });
 
-const User = mongoose.model('User',userschema);
+const User = mongoose.model('User',userschema123);
 
 module.exports.User = User;
