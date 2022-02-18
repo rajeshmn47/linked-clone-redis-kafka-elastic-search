@@ -45,7 +45,7 @@ a{
   width:10vw;
  color:blue;
  border:1px solid blue;
-  border-radius: 10px;
+  border-radius: 15px;
   outline:none;
   height:3vmax;
   margin-top: 1vmax;
@@ -57,7 +57,7 @@ a{
   width:10vw;
   border-radius: 5px;
   outline:none;
-  height:3vmax;
+  height:2vmax;
   border:none;
   margin-top: 1vmax;
   margin-left: 1vmax;
@@ -70,8 +70,10 @@ a{
   flex-wrap: wrap;
 }
 .usercard{
-  height:15vh;
-  width:10vw;
+  margin:5px;
+  height:25vh;
+  width:20vw;
   overflow: hidden;
-  border: 1px solid rgb(5, 3, 0);
+  border: 1px solid rgb(156, 154, 149);
+  border-radius: 10px;
 }
