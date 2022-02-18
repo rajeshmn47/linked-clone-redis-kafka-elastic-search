@@ -40,3 +40,28 @@ a{
     transform: rotate(360deg);
   }
 }
+.buttons{
+  background-color: black;
+  color:white;
+  width:10vw;
+  border-radius: 5px;
+  outline:none;
+  height:3vmax;
+  border:none;
+  margin-top: 1vmax;
+  margin-left: 1vmax;
+}
+.butter{
+  background-color: rgb(112, 112, 175);
+  color:white;
+  width:10vw;
+  border-radius: 5px;
+  outline:none;
+  height:3vmax;
+  border:none;
+  margin-top: 1vmax;
+  margin-left: 1vmax;
+}
+.buttons:hover{
+  background-color: rgb(97, 85, 85);
+}

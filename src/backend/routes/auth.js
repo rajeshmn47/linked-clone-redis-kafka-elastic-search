@@ -66,11 +66,98 @@ router.post("/login", async function(req, res, next) {
       });
     });
 })
-router.get("/getusers", async function(req, res, next) {
+
+function checkloggedinuser(req,res,next) {
+
+    const tokenheader = req.body.headers || req.headers['servertoken'];
+
+    if (tokenheader) {
+    
+        jwt.verify(tokenheader, server_secret_key, function(err, decoded){
+            if (!err) {
+                req.body.uidfromtoken = decoded.uid;
+                console.log('rajesh')
+            }
+            next();
+        });
+    }else {
+      res.status(200).json({
+        success: false
+      });
+    }
+
+}
+router.get("/getusers",checkloggedinuser,async function(req, res, next) {
   const a=await User.find()
-  console.log(a)
+  console.log(req.body.uidfromtoken)
   res.status(200).json({
     message: "internal server error",users:a
   });
 })
+router.post('/friendrequest',async function(req,res,next){
+  console.log(req.body.from)
+  const list=[]
+  User.find({
+    email:{$ne:req.body.from }
+    }, function(err, users) {
+
+  User.find({
+    email:{$eq:req.body.from }
+    }, function(err, userone) {
+      users.map(user=>{
+      //	console.log("connections",userone.connections.length)
+        console.log("user--->",userone[0])     
+        if(userone[0].connections.length) //all connection
+        {
+        for(var i=0;i<userone[0].connections.length;i++) //for all conn
+        {
+        
+          if(user.email!=userone[0].connections[i].email) // if not in conection
+          { 
+            list.push(user);
+          }
+          console.log(user)
+        }}
+  
+        else{	
+          list.push(user)		
+          console.log(user)
+        }
+    })})
+    res.status(200).json({responseData:list});
+  })
+})
+
+router.post('/addreq',async function (req,res,next){
+ 
+ const user =await User.findOne({
+    email:{$eq:req.body.from } }
+    )
+  const email=req.body.to.email
+  const first_name=req.body.to.first_name
+  const last_name=req.body.to.last_name
+  const job_title=req.body.to.job_title
+  console.log(email,first_name,last_name,job_title)
+  const waitin={email:email,first_name:first_name,last_name:last_name,job_title:job_title}
+    console.log(user)
+ user.waiting.push(waitin)
+    console.log(user)
+
+    await user.save()
+   console.log(user)
+    
+  res.status(200).json({
+    message: "internal server error"
+  });
+})
+
+router.get("/loaduser",checkloggedinuser,async function(req, res, next) {
+  console.log(req.headers)
+  console.log(req.body.uidfromtoken)
+  const user=await User.find({email:{$eq:req.body.uidfromtoken }})
+  res.status(200).json({
+    message:user
+  });
+})
+
 module.exports = router;

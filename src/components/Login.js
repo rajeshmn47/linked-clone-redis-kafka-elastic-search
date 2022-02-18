@@ -14,10 +14,10 @@ import {useNavigate} from 'react-router-dom'
 
 export const Login=()=>{
     const navigate=useNavigate()
-
+  
 useEffect(() => {
- if(localStorage.getItem('servertoken')){
-     navigate('/register')
+ if(localStorage.getItem('server_token')){
+     navigate('/connections')
  }
      else{
          console.log('ok rahesh')
@@ -34,12 +34,13 @@ const [user,setUser]=useState()
             email:email,
           };
        const g=await axios.post("http://127.0.0.1:3001/auth/login", newPost);
-
-      
+       console.log(g.data.server_token)
+       localStorage.setItem("server_token",g.data.server_token);
+    navigate('/connections')  
         }
     return(
         <>
-<div  style={{backgroundColor:'white',display:'flex',padding:'1vmax',}}>
+        <div  style={{backgroundColor:'white',display:'flex',padding:'1vmax',}}>
 <div style={{flex:1,marginTop:'0px',}}>
 <h3 style={{color:'blue'}}>Linked<span style={{backgroundColor:'blue',color:'white',marginLeft:'2px'}}>in</span></h3>
     </div>
@@ -69,7 +70,7 @@ Sign<span  style={{marginLeft:'1vmax'}}>in</span></button></div>
 <form onSubmit={handlesubmit}>
 <div style={{display:'flex',flexDirection:'column',height:'40vh',justifyContent:'space-between'}}>
 <TextField placeholder='email' variant='outlined' value={email} onChange={(e)=>setEmail(e.target.value)} />
-<TextField placeholder='password' variant='outlined' value={password} onChange={(e)=>setPassword(e.target.value)} />
+<TextField placeholder='password' type='password' variant='outlined' value={password} onChange={(e)=>setPassword(e.target.value)} />
 <Button type='submit' style={{borderRadius:'2vmax',height:'4vmax', backgroundColor:'blue',color:'white'}}>signin</Button>
 </div>
 </form>
