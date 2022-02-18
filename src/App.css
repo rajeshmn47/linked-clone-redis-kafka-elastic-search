@@ -69,8 +69,11 @@ a{
   display: flex;
   flex-wrap: wrap;
   background-color: white;
-  width:80vw;
+  width:60vw;
   border-radius: 1vmax;
+  justify-content: center;
+  align-items: center;
+ 
 }
 .usercard{
   display:flex;
@@ -78,7 +81,7 @@ a{
   flex-direction: column;
   align-items: center;
   margin:5px;
-  height:35vh;
+  height:40vh;
   width:15vw;
   padding:1vmax;
   overflow: hidden;

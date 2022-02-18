@@ -6,7 +6,7 @@ import FindInPageIcon from '@material-ui/icons/FindInPage';
 
 export const Navbar=(user,logout)=>{
     return(
-        <div  style={{backgroundColor:'white',display:'flex',padding:'1vmax',}}>
+        <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',padding:'1vmax',position:'fixed',width:'100vw'}}>
         <div style={{flex:1,marginTop:'0px',}}>
         <h3 style={{color:'blue'}}>Linked<span style={{backgroundColor:'blue',color:'white',marginLeft:'2px'}}>in</span></h3>
             </div>

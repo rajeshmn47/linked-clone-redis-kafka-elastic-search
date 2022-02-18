@@ -113,10 +113,14 @@ if (liked){
     return(
         <>
         {user&&<Navbar user={user} logout={logout}/>}
-      
+     
         <div style={{display:'flex'}} className='container'>
+        
             <div style={{flex:'1'}}>
         <h1>friends list</h1>
+        <div style={{height:'40vmax',width:'5vmax'}}>
+
+</div>
         <div className='userslist'>
         {users&&users.map((item,index)=>
         <>
