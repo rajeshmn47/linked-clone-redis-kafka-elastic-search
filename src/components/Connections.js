@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Details } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { StepConnector } from '@material-ui/core';
+import Navbar from './Navbar'
 
 export const Connections=()=>{
 const navigate=useNavigate()
@@ -103,7 +104,7 @@ if (liked){
         <>
         <div className='usercard'>
      <h1>{usermail.pending.map((u)=>u.email)}</h1>
-        <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'waiting':'connect'}</button>
+        <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'waiting':'Connect'}</button>
         <button className={liked?'butter':'buttons'} onClick={()=>likeit()}>{liked?'unlike':'like'}</button>
         </div>
         </>
@@ -112,22 +113,19 @@ if (liked){
 
     return(
         <>
-        <div style={{height:'4vmax',width:'98vw',alignItems:'center',padding:'0px 20px',
-        backgroundColor:'black',color:'white',display:'flex',position:'fixed',justifyContent:'space-between'}}>
-            <div style={{alignItems:'flex-end',float:'right'}}>U Are logged in as {user&&user.email}</div>
-            <div onClick={logout}>Logout</div>
-        </div>
+        {user&&<Navbar user={user} logout={logout}/>}
+      
         <div style={{display:'flex'}}>
             <div style={{flex:'1'}}>
         <h1>friends list</h1>
+        <div className='userslist'>
         {users&&users.map((item,index)=>
         <>
-        <p>{item.email}{index}</p>
-       <div className='userslist'>
+      
         {user&&<Usercard  k='liked' from={user}  usermail={item} pendinglist={pendinglist}/>}
-        </div>
-        <button className='buttons' onClick={()=>Details(index)}>getdetails</button></>)}
-        </div>
+        </>)}
+      </div>
+      </div>
       </div>
       <div style={{borderLeft:'1px solid black',height:'100vh',flex:'1',position:'fixed',marginLeft:'50vw',padding:'2vmax'}}>
             {user&&<Ira use={user}/>}
