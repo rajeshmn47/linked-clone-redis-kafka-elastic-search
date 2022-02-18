@@ -103,9 +103,8 @@ if (liked){
     return(
         <>
         <div className='usercard'>
-     <h1>{usermail.pending.map((u)=>u.email)}</h1>
+     <p className='greyfonts'>{usermail.email}</p>
         <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'waiting':'Connect'}</button>
-        <button className={liked?'butter':'buttons'} onClick={()=>likeit()}>{liked?'unlike':'like'}</button>
         </div>
         </>
     )
@@ -115,7 +114,7 @@ if (liked){
         <>
         {user&&<Navbar user={user} logout={logout}/>}
       
-        <div style={{display:'flex'}}>
+        <div style={{display:'flex'}} className='container'>
             <div style={{flex:'1'}}>
         <h1>friends list</h1>
         <div className='userslist'>
