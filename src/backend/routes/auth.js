@@ -143,10 +143,22 @@ router.post('/addreq',async function (req,res,next){
           await User.updateOne({email:req.body.from},dataChange)
         }
      } 
+     var dae=await User.findOne({email:req.body.to.email})
+     var existingWaitingList = dae.pending;
+   var k=[]
+     for(var i=0;i<existingWaitingList.length;i++){
+       k.push(existingWaitingList[i].email)
+       if(existingWaitingList[i].email===req.body.from)
+    {
+         existingWaitingList.splice(i,2); 
+         var dataChange={$set:{pending: existingWaitingList }}
+         await User.updateOne({email:req.body.to.email},dataChange)
+       }
+    } 
     console.log(k)
     console.log(k.length)
     console.log((!(k.includes(req.body.to.email))))
-    if(!(k.includes(req.body.to.email))){
+    if(!(k.includes(req.body.from))){
       const email=req.body.to.email
       const first_name=req.body.to.first_name
       const last_name=req.body.to.last_name
@@ -155,8 +167,12 @@ router.post('/addreq',async function (req,res,next){
       const waitin={email:email,first_name:first_name,last_name:last_name,job_title:job_title}
         console.log(data)
      data.waiting.push(waitin)
+
         console.log(data)
         await data.save()
+        var da=await User.findOne({email:req.body.to.email})
+        da.pending.push({email:req.body.from,first_name:first_name,last_name:last_name,job_title:job_title})
+        await da.save()
        console.log(data)
       }
   res.status(200).json({

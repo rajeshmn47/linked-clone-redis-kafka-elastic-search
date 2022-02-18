@@ -76,6 +76,7 @@ const Usercard= ({from,usermail,pendinglist})=>{
 const[liked,setLiked]=useState(false)
 useEffect(()=>{
 setConnec((pendinglist.includes(usermail.email)))
+console.log(usermail.pending)
 },[])
 const connect=async(emai)=>{
     console.log(emai)
@@ -100,7 +101,7 @@ if (liked){
 
     return(
         <>
-     
+     <h1>{usermail.pending.map((u)=>u.email)}</h1>
         <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'connection sent':'connect'}</button>
         <button className={liked?'butter':'buttons'} onClick={()=>likeit()}>{liked?'unlike':'like'}</button>
         </>
