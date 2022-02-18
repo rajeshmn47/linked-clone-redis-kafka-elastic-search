@@ -101,9 +101,11 @@ if (liked){
 
     return(
         <>
+        <div className='usercard'>
      <h1>{usermail.pending.map((u)=>u.email)}</h1>
-        <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'connection sent':'connect'}</button>
+        <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'waiting':'connect'}</button>
         <button className={liked?'butter':'buttons'} onClick={()=>likeit()}>{liked?'unlike':'like'}</button>
+        </div>
         </>
     )
 }
@@ -121,15 +123,16 @@ if (liked){
         {users&&users.map((item,index)=>
         <>
         <p>{item.email}{index}</p>
-       
+       <div className='userslist'>
         {user&&<Usercard  k='liked' from={user}  usermail={item} pendinglist={pendinglist}/>}
-        
+        </div>
         <button className='buttons' onClick={()=>Details(index)}>getdetails</button></>)}
         </div>
-        <div style={{borderLeft:'1px solid black',height:'100vh',flex:'1',position:'fixed',marginLeft:'50vw',padding:'2vmax'}}>
+      </div>
+      <div style={{borderLeft:'1px solid black',height:'100vh',flex:'1',position:'fixed',marginLeft:'50vw',padding:'2vmax'}}>
             {user&&<Ira use={user}/>}
             </div>
-        </div>
+        
      </>
      
     )

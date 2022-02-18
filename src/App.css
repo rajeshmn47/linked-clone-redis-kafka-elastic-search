@@ -41,13 +41,13 @@ a{
   }
 }
 .buttons{
-  background-color: black;
-  color:white;
+  background-color: transparent;
   width:10vw;
-  border-radius: 5px;
+ color:blue;
+ border:1px solid blue;
+  border-radius: 10px;
   outline:none;
   height:3vmax;
-  border:none;
   margin-top: 1vmax;
   margin-left: 1vmax;
 }
@@ -64,4 +64,13 @@ a{
 }
 .buttons:hover{
   background-color: rgb(97, 85, 85);
+}
+.userslist{
+  display: flex;
+  flex-wrap: wrap;
+}
+.usercard{
+  height:15vh;
+  width:10vw;
+  overflow: hidden;
 }
