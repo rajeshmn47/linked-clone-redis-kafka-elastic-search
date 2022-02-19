@@ -8,14 +8,16 @@ import Connections from './components/Connections'
 import Jobs from './components/Jobs'
 import {BrowserRouter,Routes,Route,Link,useNavigate} from 'react-router-dom'
 import {useEffect} from 'react'
-
+import { loadUser } from './actions/userActions';
+import { useDispatch,useSelector } from 'react-redux';
 
 const App = () => {
- 
-  const [user,setUser]=useState(true)
-
-
- 
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  console.log(user)
+ const dispatch=useDispatch()
+useEffect(()=>{
+  dispatch(loadUser())
+},[])
   return (
 <>
 <BrowserRouter>
