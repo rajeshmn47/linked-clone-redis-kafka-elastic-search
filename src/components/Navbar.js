@@ -9,7 +9,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 
 export const Navbar=(user,logout)=>{
-    console.log(user.user.email,logout)
+    console.log(user.user.email,user.logout)
     return(
         <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',alignItems:'center',padding:'1vmax',position:'fixed',width:'100vw'}}>
         <div style={{flex:1,marginTop:'0px',}}>
@@ -35,7 +35,7 @@ export const Navbar=(user,logout)=>{
 Sign<span  style={{marginLeft:'1vmax'}}>in</span></button>:null} </div>
         <div style={{height:'2vmax',width:'35vw',alignItems:'center',padding:'0px 20px',display:'flex',justifyContent:'space-between'}}>
             <div style={{alignItems:'flex-end',float:'right'}}>U Are {user.user.email}</div>
-            <div onClick={logout}>Logout</div>
+            <div onClick={user.logout}>Logout</div>
        
         </div>
         </div>

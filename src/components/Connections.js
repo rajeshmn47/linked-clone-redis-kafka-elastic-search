@@ -7,11 +7,15 @@ import Navbar from './Navbar'
 import { useSelector,useDispatch} from 'react-redux';
 import { getAllUsers } from '../actions/userActions';
 import SearchIcon from '@material-ui/icons/Search';
+import UserCard from './UserCard'
+import img from './images/noprofile.jpeg'
+import UserCar from './UserCar'
 
 export const Connections=()=>{
 const dispatch=useDispatch()
     const { isAuthenticated, user } = useSelector((state) => state.user);
     const { error, users } = useSelector((state) => state.allUsers);
+    console.log(user&&user)
 const navigate=useNavigate()
 const [pendinglist,setPendinglist]=useState([])
 const headers = {
@@ -88,6 +92,7 @@ if (liked){
     return(
         <>
         <div className='usercard'>
+            <img src={img} alt='' style={{border:'3px solid red',borderRadius:'50%'}}/>
      <p className='greyfonts'>{usermail.email}</p>
         <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'waiting':'Connect'}</button>
         </div>
@@ -98,7 +103,7 @@ if (liked){
     return(
         <>
         {user&&<Navbar user={user} logout={logout}/>}
-     
+       
         <div style={{display:'flex'}} className='container'>
         <div className='side'>rajesh</div>
             <div style={{flex:'1'}}>
@@ -107,18 +112,25 @@ if (liked){
         <div className='userslist'>
         {users&&users.map((item,index)=>
         <>
-      
         {user&&<Usercard  k='liked' from={user}  usermail={item} pendinglist={pendinglist}/>}
-        </>)}
-      </div>
-      
-      </div>
-      
-      </div>
-      <div style={{borderLeft:'1px solid black',height:'100vh',flex:'1',position:'fixed',marginLeft:'50vw',padding:'2vmax'}}>
-            {user&&<Ira use={user}/>}
-            </div>
-        
+         </>
+         )}
+</div>
+</div>
+</div>
+<h1 style={{marginLeft:'40vw',color:'red',width:'50vw'}}>sent connections</h1>
+<div className='container'>
+  
+<div style={{marginLeft:'20vw',width:'70vw'}}>
+<div className='userslist'>{user?.waiting?.map((q)=><UserCard user={q} />)}</div>
+</div>
+</div>
+<div className='container'>
+  
+<div style={{marginLeft:'20vw',width:'70vw'}}>
+<div className='userslist'>{user?.pending?.map((q)=><UserCar user={q} />)}</div>
+</div>
+</div>
      </>
      
     )
