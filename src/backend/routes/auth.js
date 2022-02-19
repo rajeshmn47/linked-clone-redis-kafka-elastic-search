@@ -179,7 +179,25 @@ router.post('/addreq',async function (req,res,next){
     message: "internal server error"
   })
 })
-
+router.post('/respondtorequest',checkloggedinuser,async function(req,res,next){
+  consol.log('ktre')
+  if(req.body.action==='accept'){
+    console.log('trying')
+  const user=await User.find({email:{$eq:req.body.uidfromtoken }})
+  user.connections.push({email:req.body.email,first_name:req.body.first_name,last_name:'kjh',job_title:'doctor',
+experience:55})
+  await user.save()
+  console.log(user)
+  console.log('responding')
+  const user1=await User.find({email:{$eq:req.body.email }})
+  user1.connections.push({email:user.email,first_name:user.first_name,last_name:user.last_name,
+  job_title:'kas',experience:3})
+  await user1.save()
+  }
+  res.status(200).json({
+    message:'ok u re friends now'
+  })
+})
 router.get("/loaduser",checkloggedinuser,async function(req, res, next) {
   console.log(req.headers)
   console.log(req.body.uidfromtoken)
