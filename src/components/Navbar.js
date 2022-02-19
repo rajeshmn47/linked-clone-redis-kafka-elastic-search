@@ -6,6 +6,7 @@ import FindInPageIcon from '@material-ui/icons/FindInPage';
 import HomeIcon from '@material-ui/icons/Home';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import SearchIcon from '@material-ui/icons/Search';
 
 export const Navbar=(user,logout)=>{
     console.log(user.user.email,logout)
@@ -14,8 +15,9 @@ export const Navbar=(user,logout)=>{
         <div style={{flex:1,marginTop:'0px',}}>
         <h3 style={{color:'blue'}}>Linked<span style={{backgroundColor:'blue',color:'white',marginLeft:'2px'}}>in</span></h3>
             </div>
-        <div style={{flex:3,marginLeft:'10px',border:'none',outline:'none'}}>
-            <input type='text' placeholder='search jobs' style={{height:'3vmax',width:'20vw',border:'none',outline:'none',backgroundColor:'rgba(163, 153, 173, 0.877)'}}/></div>
+        <div style={{flex:3,marginLeft:'10px',border:'none',outline:'none',display:'flex',backgroundColor:'rgba(163, 153, 173, 0.877)',width:'20vw'}}>
+            <SearchIcon/>
+            <input type='text' placeholder='search jobs' style={{height:'3vmax',backgroundColor:'rgba(163, 153, 173, 0.877)',border:'none',outline:'none'}}/></div>
         <div style={{display:'flex',justifyContent:'space-evenly',alignItems:'center',flex:6,opacity:'0.5',padding:'5px',fontSize:'1vmax'}}>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
             <HomeIcon/>Home</div>

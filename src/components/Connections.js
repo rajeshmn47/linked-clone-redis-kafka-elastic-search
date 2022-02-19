@@ -6,6 +6,7 @@ import { StepConnector } from '@material-ui/core';
 import Navbar from './Navbar'
 import { useSelector,useDispatch} from 'react-redux';
 import { getAllUsers } from '../actions/userActions';
+import SearchIcon from '@material-ui/icons/Search';
 
 export const Connections=()=>{
 const dispatch=useDispatch()
@@ -25,7 +26,7 @@ console.log('l')
     useEffect(()=>{
         const pend=[]
         console.log(user)
-       {user&&user.waiting.map((m)=>pend.push(m.email))}
+       {user&&user.waiting?.map((m)=>pend.push(m.email))}
         setPendinglist(()=>pend)
         console.log(pendinglist)
         console.log('rajfvdfcsdh')
