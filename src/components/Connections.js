@@ -4,42 +4,32 @@ import { Details } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { StepConnector } from '@material-ui/core';
 import Navbar from './Navbar'
+import { useSelector,useDispatch} from 'react-redux';
+import { getAllUsers } from '../actions/userActions';
 
 export const Connections=()=>{
+const dispatch=useDispatch()
+    const { isAuthenticated, user } = useSelector((state) => state.user);
+    const { error, users } = useSelector((state) => state.allUsers);
 const navigate=useNavigate()
-const [users,setUsers]=useState([])
-const [user,setUser]=useState()
 const [pendinglist,setPendinglist]=useState([])
 const headers = {
     'Accept': 'application/json'
 };
 
-
-     useEffect(async() => {
-         if(!localStorage.getItem('server_token')){navigate('/')}
-         const servertoken=localStorage.getItem('server_token')&&localStorage.getItem('server_token') 
-         axios("http://127.0.0.1:3001/auth/loaduser", 
-         {method:'get',headers: { ...headers,'Content-Type': 'application/json',servertoken:servertoken }}).then((response)=>{
-             console.log(response.data.message[0])
-             setUser(response.data.message[0])})
-          
-    
-        axios("http://127.0.0.1:3001/auth/getusers", 
-        {method:'get',headers: { ...headers,'Content-Type': 'application/json',servertoken:servertoken }}).then((response)=>{
-            console.log(response.data.users)
-            setUsers(response.data.users)})    
-     
-      
-    
-       }, []);
+useEffect(() => {
+ console.log('dispatch')
+dispatch(getAllUsers())
+console.log('l')
+  }, []);
     useEffect(()=>{
         const pend=[]
         console.log(user)
-        {user&&user.waiting.map((m)=>pend.push(m.email))}
-        {user&&setPendinglist(()=>pend)}
+       {user&&user.waiting.map((m)=>pend.push(m.email))}
+        setPendinglist(()=>pend)
         console.log(pendinglist)
-        console.log('rajesh')
-    },[user])
+        console.log('rajfvdfcsdh')
+    },[user,dispatch])
        const pendinglist1=()=>{
       console.log(user)
      
@@ -58,13 +48,7 @@ const sendrequest= async(email)=>{
             </>
         )
     }
-  const Details=(inde)=>{
-    
-      console.log(inde)
-      {users&&console.log(users[inde])}
-      {users&&setUser(users[inde])}
-      console.log(user)
-  }
+
  
 const logout=(e)=>{
     localStorage.removeItem('server_token')
