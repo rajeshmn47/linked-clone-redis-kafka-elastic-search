@@ -128,7 +128,7 @@ if (liked){
 <div className='container'>
   
 <div style={{marginLeft:'20vw',width:'70vw'}}>
-<div className='userslist'>{user?.pending?.map((q)=><UserCar user={q} />)}</div>
+<div className='userslist'>{user?.pending?.map((q)=><UserCar user1={q} />)}</div>
 </div>
 </div>
      </>
