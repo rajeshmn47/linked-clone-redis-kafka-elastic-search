@@ -138,7 +138,7 @@ router.post('/addreq',async function (req,res,next){
         k.push(existingWaitingList[i].email)
         if(existingWaitingList[i].email===req.body.to.email)
      {
-          existingWaitingList.splice(i,2); 
+          existingWaitingList.splice(i,1); 
           var dataChange={$set:{waiting: existingWaitingList }}
           await User.updateOne({email:req.body.from},dataChange)
         }
@@ -150,7 +150,7 @@ router.post('/addreq',async function (req,res,next){
        k.push(existingWaitingList[i].email)
        if(existingWaitingList[i].email===req.body.from)
     {
-         existingWaitingList.splice(i,2); 
+         existingWaitingList.splice(i,1); 
          var dataChange={$set:{pending: existingWaitingList }}
          await User.updateOne({email:req.body.to.email},dataChange)
        }
