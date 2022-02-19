@@ -115,7 +115,7 @@ if (liked){
         {user&&<Navbar user={user} logout={logout}/>}
      
         <div style={{display:'flex'}} className='container'>
-        
+        <div className='side'>rajesh</div>
             <div style={{flex:'1'}}>
        
       
@@ -126,7 +126,9 @@ if (liked){
         {user&&<Usercard  k='liked' from={user}  usermail={item} pendinglist={pendinglist}/>}
         </>)}
       </div>
+      
       </div>
+      
       </div>
       <div style={{borderLeft:'1px solid black',height:'100vh',flex:'1',position:'fixed',marginLeft:'50vw',padding:'2vmax'}}>
             {user&&<Ira use={user}/>}
