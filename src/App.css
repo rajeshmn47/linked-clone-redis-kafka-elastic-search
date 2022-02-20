@@ -128,19 +128,23 @@ a{
   flex-direction: column;
   align-items: center;
   background-color: white;
-  width: 55vw;
-padding:5vmax;
-border-radius: 5vmax;
+  width: 65vw;
+  padding-top:1vmax;
+border-radius: 1vmax;
+position:relative;
 }
 .postbtn{
   border: none;
   outline: none;
   color: white;
   background-color: blue;
-  width:60vw;
+  width:10vw;
   height: 5vmax;
   margin-top: 2vmax;
   border-radius: 1vmax;
+  position:absolute;
+  right:5%;
+  bottom:5%;
 }
 .water{
   display:block;

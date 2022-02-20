@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import {useState,useRef,useEffect} from 'react'
 import Share from './Share'
+import Post from './Post'
 import {
     PermMedia,
     Label,
@@ -33,13 +34,6 @@ setPosts(data.data)
         localStorage.removeItem('server_token')
         navigate('/')
     }
-    const addfiles=()=>{
-        console.log('raju')
-        share.current.classList.add("water")
-        share.current.classList.remove("milk")
-        console.log('kgf')
-    }
-
     return(
         <>
           {user&&<Navbar user={user} logout={logout}/>}
@@ -48,22 +42,9 @@ setPosts(data.data)
 <Share/>
 </div>
 <div className='feedcontainer'>
-{posts&&posts.map((p)=><>
+{posts&&posts.map((o)=><>
 <div className='div'>
-    {p.userId&&<Usercars id={p.userId}/>}
-    <p>{p.text}</p>
-{p.img&&<img src={`http://127.0.0.1:3001/images/${p.img}`}  height='200'/>}
-<div className='icons'>
-    <div className='icon'>
-<ThumbUpAltOutlinedIcon htmlColor='rgb(138, 132, 132)'/>Like
-</div>
-<div className='icon'>
-<CommentOutlinedIcon htmlColor='rgb(138, 132, 132)'/>Comment
-</div>
-<div className='icon'>
-<ShareOutlinedIcon htmlColor='rgb(138, 132, 132)'/>Share
-</div>
-</div>
+ <Post p={o}/>
 </div>
 </>)}
 </div>

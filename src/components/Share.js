@@ -82,9 +82,12 @@ const handlesubmit= async (e)=>{
               <EmojiEmotions htmlColor="goldenrod" className="shareIcon" />
               <span className="shareOptionText">Feelings</span>
             </div>
+            <div className="shareOption">
+            <button className='postbtn'>post</button>
+            </div>
           </div>
 
-              <button className='postbtn'>post</button>
+        
 </div>
 </form>
 </>
