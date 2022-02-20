@@ -3,6 +3,7 @@ const express=require('express')
 const app = express();
 const router = express.Router();
 var {User}=require('../models/User1')
+var Post=require('../models/post')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
@@ -206,5 +207,22 @@ router.get("/loaduser",checkloggedinuser,async function(req, res, next) {
     message:user
   });
 })
+
+  router.post("/post", async (req, res) => {
+    const newPost = new Post(req.body);
+    try {
+      const savedPost = await newPost.save();
+      res.status(200).json(savedPost);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  router.get('/getposts',async(req,res)=>{
+    const posts=await Post.find()
+    res.status(200).json({
+      data:posts
+    });
+  })
+ 
 
 module.exports = router;

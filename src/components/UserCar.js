@@ -7,14 +7,15 @@ export const UserCar=(user1)=>{
         console.log(user)
     console.log(user1)
     const email=user1.user1.email
-const accept=(email)=>{
+const accept=async (email)=>{
     console.log('jhgfd')
-    axios.post('http://127.0.0.1:3001/auth/respondtorequest',{email:email,first_name:'krs',second_name:'lrs',
+    await axios.post('http://127.0.0.1:3001/auth/respondtorequest',{email:email,first_name:'krs',second_name:'lrs',
     job_title:'software develloper',experience:4,action:'accept'
 })
+console.log('basic')
 }
-const reject=(email)=>{
-    axios.post('http://127.0.0.1:3001/auth/respondtorequest',{email:email,first_name:'krs',second_name:'lrs',
+const reject=async (email)=>{
+   await  axios.post('http://127.0.0.1:3001/auth/respondtorequest',{email:email,first_name:'krs',second_name:'lrs',
     job_title:'software develloper',experience:4,action:'reject'})
 }
     return(

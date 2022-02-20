@@ -2,7 +2,9 @@
   margin:0;
   padding:0;
 }
-
+a{
+  text-decoration:none;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -94,7 +96,7 @@ a{
 }
 .container{
   padding:10vmax;
-  background-color: rgba(163, 153, 173, 0.877);
+  background-color: rgba(199, 193, 206, 0.877);
   display: flex;
   justify-content: center;
   
@@ -109,4 +111,89 @@ a{
   margin-right:5vmax;
   border: 1px solid rgb(143, 137, 137);
   border-radius: 10px;
+}
+.sharepost{
+  height:5vmax;
+  width:60vw;
+  padding: 1vmax;
+  border:none;
+  outline: none;
+  border:1px solid rgb(92, 88, 88);
+  border-radius: 10vmax;
+}
+.feed{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  width: 55vw;
+padding:5vmax;
+border-radius: 5vmax;
+}
+.postbtn{
+  border: none;
+  outline: none;
+  color: white;
+  background-color: blue;
+  width:60vw;
+  height: 5vmax;
+  margin-top: 2vmax;
+  border-radius: 1vmax;
+}
+.water{
+  display:block;
+  margin-top: 2vmax;
+}
+.milk{
+  display:none;
+}
+.shareOptions{
+  display: flex;
+ margin-top: 2vmax;
+  align-items: center;
+}
+.shareOption{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 1vmax;
+}
+.feedcontainer{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:rgba(199, 193, 206, 0.877); ;
+}
+
+.div{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width:50vw;
+  height:50vh;
+  border-radius: 2vmax;
+  background-color: white;
+  margin: 5px;
+  position: relative;
+}
+.icons{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+margin-top:3vmax;
+  position:absolute;
+  bottom:5%;
+  left:5%;
+  width: 90%;
+  border-top: 1px solid rgb(138, 132, 132);
+  padding-top: 5px;
+}
+.icon{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }

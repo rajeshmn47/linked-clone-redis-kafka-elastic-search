@@ -9,18 +9,18 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 
 export const Navbar=(user,logout)=>{
-    console.log(user.user.email,user.logout)
+    console.log(user)
     return(
         <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',alignItems:'center',padding:'1vmax',position:'fixed',width:'100vw'}}>
         <div style={{flex:1,marginTop:'0px',}}>
         <h3 style={{color:'blue'}}>Linked<span style={{backgroundColor:'blue',color:'white',marginLeft:'2px'}}>in</span></h3>
             </div>
-        <div style={{flex:3,marginLeft:'10px',border:'none',outline:'none',display:'flex',backgroundColor:'rgba(163, 153, 173, 0.877)',width:'20vw'}}>
+        <div style={{flex:3,marginLeft:'10px',alignItems:'center',border:'none',outline:'none',display:'flex',backgroundColor:'rgba(163, 153, 173, 0.877)',width:'20vw'}}>
             <SearchIcon/>
             <input type='text' placeholder='search jobs' style={{height:'3vmax',backgroundColor:'rgba(163, 153, 173, 0.877)',border:'none',outline:'none'}}/></div>
         <div style={{display:'flex',justifyContent:'space-evenly',alignItems:'center',flex:6,opacity:'0.5',padding:'5px',fontSize:'1vmax'}}>
-        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-            <HomeIcon/>Home</div>
+        <Link to='/home'><div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+            <HomeIcon/>Home</div></Link>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}><PeopleIcon/>My network</div>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
             <NotificationsIcon/>Notifications</div>
