@@ -5,6 +5,7 @@ import im from './images/table.jpeg'
 import Login from './components/Login'
 import Register from './components/Register'
 import Connections from './components/Connections'
+import Home from './components/Home'
 import Jobs from './components/Jobs'
 import {BrowserRouter,Routes,Route,Link,useNavigate} from 'react-router-dom'
 import {useEffect} from 'react'
@@ -26,6 +27,7 @@ useEffect(()=>{
   <Route path='/register' element={<Register/>}/>
   <Route path='/connections' element={<Connections/>}/>
   <Route path='/Jobs' element={<Jobs/>}/>
+  <Route path='/home' element={<Home/>}/>
 </Routes>
 </BrowserRouter>
 </>
