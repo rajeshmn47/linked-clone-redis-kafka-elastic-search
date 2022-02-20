@@ -88,11 +88,14 @@ function checkloggedinuser(req,res,next) {
     }
 
 }
-router.get("/getusers",checkloggedinuser,async function(req, res, next) {
-  const a=await User.find()
+router.get("/getusers",async function(req, res,next){
+  console.log(req.params.id)
+  const b=await User.find()
+  const k=await Post.find()
+  console.log(k)
   console.log(req.body.uidfromtoken)
   res.status(200).json({
-    message: "internal server error",users:a
+    message: "internal server error",users:b
   });
 })
 router.post('/friendrequest',async function(req,res,next){
@@ -224,11 +227,12 @@ router.get("/loaduser",checkloggedinuser,async function(req, res, next) {
     });
   })
   router.get("/getuser/:id",async function(req, res, next) {
-    console.log(req.params.id)
-    const a=await User.findById(req.params.id)
+    console.log(req.params.id,'findingbyid')
+    var fd = '5ebadc45a99bde77b2efb20e'
+const b=await User.findById(req.params.id)
+    console.log('ok boy')
     res.status(200).json({
-      message: "internal server error",user:a
+      message: "internal server error",user:b
     });
   })
-
 module.exports = router;
