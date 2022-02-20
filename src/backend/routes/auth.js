@@ -223,6 +223,12 @@ router.get("/loaduser",checkloggedinuser,async function(req, res, next) {
       data:posts
     });
   })
- 
+  router.get("/getuser/:id",async function(req, res, next) {
+    console.log(req.params.id)
+    const a=await User.findById(req.params.id)
+    res.status(200).json({
+      message: "internal server error",user:a
+    });
+  })
 
 module.exports = router;
