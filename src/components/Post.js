@@ -14,7 +14,7 @@ import LongMenu from './Menu'
 import {useSelector} from 'react-redux'
 import { useEffect,useState} from "react";
 import Collapse from '@material-ui/core/Collapse';
-import {TextField} from '@material-ui/core'
+import {TextField,Button} from '@material-ui/core'
  
 // format timestamp
 
@@ -26,14 +26,27 @@ export const Post=({p})=>{
     console.log(p.likes.includes(user?._id))
     const[isliked,setIsliked]=useState(t)
     const[expanded,setExpanded]=useState(false)
+    const[comment,setComment]=useState()
+    const[comments,setComments]=useState()
     const[likes,setLikes]=useState(p.likes.length)
     console.log(p.comments,'raju')
     useEffect(() => {
         setIsliked(p.likes.includes(user?._id));
       }, [user, p.likes]);
+      useEffect(() => {
+        setComments(p.comments);
+      }, [user, p.comments]);
   const commenthandler=()=>{
 setExpanded(!expanded)
   }  
+const addcomment=async(e)=>{
+    console.log('ok')
+    e.preventDefault()
+    await axios.post('http://127.0.0.1:3001/auth/addcomment',{userid:user._id,postid:p._id,commenttext:comment}) 
+setComments([...comments,{text:comment}])
+console.log(comments,'avatar')
+setComment('')
+}
  
     const likehandler=async()=>{
         setIsliked(!isliked)
@@ -72,9 +85,14 @@ await axios.post('http://127.0.0.1:3001/auth/likehandler',{userid:user._id,posti
 </div>
 <div style={{zIndex:'100',marginTop:'1vmax'}}>
     <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <TextField style={{width:'40vw'}} variant='outlined' placeholder='comment here'/>
-        {p.comments.map((t)=><p style={{marginTop:'1vmax'}}>{t.text}</p>
-        )}       
+        <form onSubmit={(e)=>addcomment(e)}>
+        <TextField style={{width:'40vw'}} variant='outlined' 
+        value={comment} placeholder='comment here' onChange={(e)=>setComment(e.target.value)}/>
+        <Button type='submit'>submit</Button>
+       
+        {comments?.map((t)=><p style={{marginTop:'1vmax'}}>{t.text}</p>
+        )} 
+        </form>      
         </Collapse>
 </div>
 

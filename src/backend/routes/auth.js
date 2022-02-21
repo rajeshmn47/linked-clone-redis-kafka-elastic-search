@@ -260,4 +260,13 @@ await post.save()
 res.status(200).json(post);
   })
 
+  router.post('/addcomment',async(req,res)=>{
+    var post=await Post.findById(req.body.postid)
+    
+      post.comments.push({text:req.body.commenttext,commenterId:req.body.userid})
+      await post.save()
+      console.log(req.body)
+res.status(200).json(post);
+  })
+
 module.exports = router;
