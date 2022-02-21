@@ -129,9 +129,9 @@ a{
   align-items: center;
   background-color: white;
   width: 65vw;
+  position:relative;
   padding-top:1vmax;
 border-radius: 1vmax;
-position:relative;
 }
 .postbtn{
   border: none;
@@ -178,20 +178,17 @@ position:relative;
   flex-direction: column;
   align-items: center;
   width:50vw;
-  height:50vh;
   border-radius: 2vmax;
   background-color: white;
   margin: 5px;
-  position: relative;
+ padding:1vmax;
 }
 .icons{
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 margin-top:3vmax;
-  position:absolute;
-  bottom:5%;
-  left:5%;
+  
   width: 90%;
   border-top: 1px solid rgb(138, 132, 132);
   padding-top: 5px;
@@ -204,7 +201,6 @@ margin-top:3vmax;
 .usercardd{
   padding:1vmax;
 display:flex;
-position:absolute;
 justify-content:space-evenly;
 width:20%;
 top:0;
