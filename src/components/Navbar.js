@@ -7,6 +7,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
+import Collapse from '@material-ui/core/Collapse';
 
 export const Navbar=(user,logout)=>{
     console.log(user)

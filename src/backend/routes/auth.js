@@ -235,4 +235,38 @@ const b=await User.findById(req.params.id)
       message: "internal server error",user:b
     });
   })
+  router.post("/editpost", async (req, res) => {
+    console.log(req.body)
+    var newpost = await Post.findById(req.body.id)
+    newpost.desc=req.body.value
+    try {
+      const savedPost = await newpost.save();
+      res.status(200).json(savedPost);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  router.post('/likehandler',async(req,res)=>{
+    var post=await Post.findById(req.body.postid)
+    if(post.likes.includes(req.body.userid)){
+      post.likes.remove(req.body.userid)
+      await post.save()
+    }
+    else{
+    post.likes.push(req.body.userid)
+await post.save()
+    }
+res.status(200).json(post);
+  })
+
+  router.post('/addcomment',async(req,res)=>{
+    var post=await Post.findById(req.body.postid)
+    
+      post.comments.push({text:req.body.commenttext,commenterId:req.body.userid})
+      await post.save()
+      console.log(req.body)
+res.status(200).json(post);
+  })
+
 module.exports = router;

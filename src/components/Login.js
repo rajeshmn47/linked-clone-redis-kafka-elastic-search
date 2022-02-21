@@ -17,7 +17,7 @@ export const Login=()=>{
   
 useEffect(() => {
  if(localStorage.getItem('server_token')){
-     navigate('/connections')
+     navigate('/home')
  }
      else{
          console.log('ok rahesh')
@@ -36,7 +36,7 @@ const [user,setUser]=useState()
        const g=await axios.post("http://127.0.0.1:3001/auth/login", newPost);
        console.log(g.data.server_token)
        localStorage.setItem("server_token",g.data.server_token);
-    navigate('/connections')  
+    navigate('/home')  
         }
     return(
         <>
