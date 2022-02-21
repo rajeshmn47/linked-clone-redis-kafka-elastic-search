@@ -12,7 +12,7 @@ import Collapse from '@material-ui/core/Collapse';
 export const Navbar=(user,logout)=>{
     console.log(user)
     return(
-        <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',alignItems:'center',padding:'1vmax',position:'fixed',width:'100vw'}}>
+        <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',alignItems:'center',zIndex:'10000',padding:'1vmax',position:'fixed',width:'100vw'}}>
         <div style={{flex:1,marginTop:'0px',}}>
         <h3 style={{color:'blue'}}>Linked<span style={{backgroundColor:'blue',color:'white',marginLeft:'2px'}}>in</span></h3>
             </div>

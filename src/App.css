@@ -174,9 +174,8 @@ border-radius: 1vmax;
 
 .div{
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
+ 
   width:50vw;
   border-radius: 2vmax;
   background-color: white;
@@ -206,4 +205,12 @@ width:20%;
 top:0;
 left:0;
 justify-content:flex-start;
+}
+.comment{
+  background-color: rgb(203, 241, 215);
+  margin-top:1vmax;
+  border-radius: 1vmax;
+  padding: 1vmax;
+  width:45vw;
+ 
 }

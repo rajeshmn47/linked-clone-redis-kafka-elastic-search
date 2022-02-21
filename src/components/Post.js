@@ -15,6 +15,7 @@ import {useSelector} from 'react-redux'
 import { useEffect,useState} from "react";
 import Collapse from '@material-ui/core/Collapse';
 import {TextField,Button} from '@material-ui/core'
+import Usercarv from './Usercarv'
  
 // format timestamp
 
@@ -65,7 +66,7 @@ await axios.post('http://127.0.0.1:3001/auth/likehandler',{userid:user._id,posti
         
    {p.userId&&<Usercars post={p} />}
  
-    <p>{p.desc}</p>
+    <p style={{marginBottom:'1vmax'}}>{p.desc}</p>
 {p.img&&<img src={`http://127.0.0.1:3001/images/${p.img}`}  height='200'/>}
 <div className='icons'>
  {isliked? <div className='icon' onClick={()=>likehandler()}>
@@ -90,7 +91,12 @@ await axios.post('http://127.0.0.1:3001/auth/likehandler',{userid:user._id,posti
         value={comment} placeholder='comment here' onChange={(e)=>setComment(e.target.value)}/>
         <Button type='submit'>submit</Button>
        
-        {comments?.map((t)=><p style={{marginTop:'1vmax'}}>{t.text}</p>
+        {comments?.map((t)=>
+        <div className='comment'>
+            <Usercarv post={t}/>
+            <p style={{marginTop:'1vmax'}}>
+            {t.text}</p>
+            </div>
         )} 
         </form>      
         </Collapse>

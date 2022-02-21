@@ -229,11 +229,18 @@ router.get("/loaduser",checkloggedinuser,async function(req, res, next) {
   router.get("/getuser/:id",async function(req, res, next) {
     console.log(req.params.id,'findingbyid')
     var fd = '5ebadc45a99bde77b2efb20e'
+  try{
 const b=await User.findById(req.params.id)
+console.log('ok boy')
+res.status(200).json({
+  message: "internal server error",user:b
+});
+  }  catch(err){
     console.log('ok boy')
     res.status(200).json({
-      message: "internal server error",user:b
+      message: "internal server error"
     });
+  }
   })
   router.post("/editpost", async (req, res) => {
     console.log(req.body)
