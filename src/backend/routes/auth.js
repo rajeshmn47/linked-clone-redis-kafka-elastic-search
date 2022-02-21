@@ -2,6 +2,7 @@ const multer = require("multer");
 const express=require('express')
 const app = express();
 const router = express.Router();
+var {Notification}=require('../models/notification')
 var {User}=require('../models/User1')
 var Post=require('../models/post')
 const bcrypt = require("bcrypt");
@@ -256,6 +257,10 @@ res.status(200).json({
 
   router.post('/likehandler',async(req,res)=>{
     var post=await Post.findById(req.body.postid)
+    var toid=post.userId
+  var touser=await User.findById(toid)
+
+    var fr=await User.findById(req.body.userid)
     if(post.likes.includes(req.body.userid)){
       post.likes.remove(req.body.userid)
       await post.save()
@@ -263,6 +268,13 @@ res.status(200).json({
     else{
     post.likes.push(req.body.userid)
 await post.save()
+   var notification = new Notification( { 
+        from:fr.first_name+" has liked ure post!",
+        time: new Date().getTime(),
+        status: "not_read",
+        to: touser.email,
+        type : "like"
+      });
     }
 res.status(200).json(post);
   })

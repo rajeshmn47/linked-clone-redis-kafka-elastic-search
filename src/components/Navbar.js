@@ -22,7 +22,9 @@ export const Navbar=(user,logout)=>{
         <div style={{display:'flex',justifyContent:'space-evenly',alignItems:'center',flex:6,opacity:'0.5',padding:'5px',fontSize:'1vmax'}}>
         <Link to='/home'><div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
             <HomeIcon/>Home</div></Link>
+            <Link to='/connections'>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}><PeopleIcon/>My network</div>
+        </Link>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
             <NotificationsIcon/>Notifications</div>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}><WorkIcon/>Jobs</div>
