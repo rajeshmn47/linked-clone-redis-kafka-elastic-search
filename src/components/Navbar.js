@@ -1,5 +1,4 @@
 import PeopleIcon from '@material-ui/icons/People';
-import {Link} from 'react-router-dom'
 import WorkIcon from '@material-ui/icons/Work';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
@@ -8,8 +7,16 @@ import TelegramIcon from '@material-ui/icons/Telegram';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import Collapse from '@material-ui/core/Collapse';
+import {BrowserRouter,Routes,Route,Link,useNavigate} from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
-export const Navbar=(user,logout)=>{
+export const Navbar=()=>{
+    const {user}= useSelector((state) => state.user);
+    const navigate=useNavigate()
+    const logout=(e)=>{
+        localStorage.removeItem('server_token')
+        navigate('/')
+      }
     console.log(user)
     return(
         <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',alignItems:'center',zIndex:'10000',padding:'1vmax',position:'fixed',width:'100vw'}}>
@@ -25,20 +32,24 @@ export const Navbar=(user,logout)=>{
             <Link to='/connections'>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}><PeopleIcon/>My network</div>
         </Link>
+        <Link to='/notifications'>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-            <NotificationsIcon/>Notifications</div>
+            <NotificationsIcon/>Notifications</div></Link>
+            <Link to='/jobs'>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}><WorkIcon/>Jobs</div>
+        </Link>
+        <Link to='/messaging'>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-            <TelegramIcon/>Messaging</div>
+            <TelegramIcon/>Messaging</div></Link>
         </div>
-     
+    
         <div style={{flex:2,padding:'5px'}}>
             {!user?<button style={{outline:'none',backgroundColor:'white',border:'1px solid blue',
         color:'blue',borderRadius:'10px',padding:'2px'}}>
 Sign<span  style={{marginLeft:'1vmax'}}>in</span></button>:null} </div>
         <div style={{height:'2vmax',width:'35vw',alignItems:'center',padding:'0px 20px',display:'flex',justifyContent:'space-between'}}>
-            <div style={{alignItems:'flex-end',float:'right'}}>U Are {user.user.email}</div>
-            <div onClick={user.logout}>Logout</div>
+            <div style={{alignItems:'flex-end',float:'right'}}>U Are {user?.email}</div>
+            <div onClick={logout}>Logout</div>
        
         </div>
         </div>
