@@ -10,7 +10,7 @@ export const UserCar=(user1)=>{
 const accept=async (email)=>{
     console.log('jhgfd')
     await axios.post('http://127.0.0.1:3001/auth/respondtorequest',{email:email,first_name:'krs',second_name:'lrs',
-    job_title:'software develloper',experience:4,action:'accept'
+    job_title:'software develloper',experience:4,action:'accept',useremail:user.email
 })
 console.log('basic')
 }

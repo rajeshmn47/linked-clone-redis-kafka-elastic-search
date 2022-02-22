@@ -99,6 +99,13 @@ router.get("/getusers",async function(req, res,next){
     message: "internal server error",users:b
   });
 })
+router.get("/getuserbymail/:email",async function(req, res,next){
+  console.log(req.params.email)
+  const user=await User.find({email:{$eq:req.params.email }})
+  res.status(200).json({
+    message: "internal server error",users:user
+  });
+})
 router.post('/friendrequest',async function(req,res,next){
   console.log(req.body.from)
   const list=[]
@@ -184,20 +191,21 @@ router.post('/addreq',async function (req,res,next){
     message: "internal server error"
   })
 })
-router.post('/respondtorequest',checkloggedinuser,async function(req,res,next){
-  consol.log('ktre')
+router.post('/respondtorequest',async function(req,res,next){
+  console.log(req.body)
   if(req.body.action==='accept'){
     console.log('trying')
-  const user=await User.find({email:{$eq:req.body.uidfromtoken }})
+  const user=await User.findOne({email:{$eq:req.body.useremail }})
   user.connections.push({email:req.body.email,first_name:req.body.first_name,last_name:'kjh',job_title:'doctor',
 experience:55})
   await user.save()
   console.log(user)
   console.log('responding')
-  const user1=await User.find({email:{$eq:req.body.email }})
+  const user1=await User.findOne({email:{$eq:req.body.email }})
   user1.connections.push({email:user.email,first_name:user.first_name,last_name:user.last_name,
   job_title:'kas',experience:3})
   await user1.save()
+  console.log(user1,'iamsexy')
   }
   res.status(200).json({
     message:'ok u re friends now'
@@ -206,6 +214,7 @@ experience:55})
 router.get("/loaduser",checkloggedinuser,async function(req, res, next) {
   console.log(req.headers)
   console.log(req.body.uidfromtoken)
+  const notifications=await Notification.find()
   const user=await User.find({email:{$eq:req.body.uidfromtoken }})
   res.status(200).json({
     message:user

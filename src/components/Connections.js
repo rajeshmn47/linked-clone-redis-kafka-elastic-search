@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import UserCard from './UserCard'
 import img from './images/noprofile.jpeg'
 import UserCar from './UserCar'
+import Connecteduser from './Connecteduser'
 
 export const Connections=()=>{
 const dispatch=useDispatch()
@@ -66,7 +67,7 @@ const Usercard= ({from,usermail,pendinglist})=>{
 const[liked,setLiked]=useState(false)
 useEffect(()=>{
 setConnec((pendinglist.includes(usermail.email)))
-console.log(usermail.pending)
+console.log(usermail.connections,'rajeevsuri')
 },[])
 const connect=async(emai)=>{
     console.log(emai)
@@ -106,6 +107,18 @@ if (liked){
        
         <div style={{display:'flex'}} className='container'>
         <div className='side'>rajesh</div>
+      
+       
+      
+       <div className='userslist'>
+       {users&&user?.connections?.map((item,index)=>
+       <>
+       {user&&<Connecteduser  usermail={item}/>}
+        </>
+        )}
+
+</div>
+<div style={{display:'flex'}} className='container'>
             <div style={{flex:'1'}}>
        
       
@@ -115,6 +128,7 @@ if (liked){
         {user&&<Usercard  k='liked' from={user}  usermail={item} pendinglist={pendinglist}/>}
          </>
          )}
+</div>
 </div>
 </div>
 </div>
