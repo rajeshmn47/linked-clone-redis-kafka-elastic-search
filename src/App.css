@@ -245,7 +245,6 @@ justify-content:flex-start;
   display: flex;
   justify-content: center;
   align-items: center;
- 
   border-radius: 5px;
 }
 .mestitle{
@@ -256,31 +255,44 @@ justify-content:flex-start;
 }
 .messages{
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
   flex-direction: column;
  width:25vw;
  background-color: white;
- height: 75vh;
+ height: 77vh;
 }
-.messagercontainer{
+.messagercontainers{
   width: 100%;
   background-color: white;
-  height: 75vh;
+  height: 77vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.messagecontainer{
+  display: flex;
+  background-color: white;
+  height: 10vh;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1vmax;
+  width: 100%;
+  border-bottom: 1px solid rgb(235, 232, 232);
 }
 .chatbox{
-  border-left: 1px solid rgb(216, 210, 210);
+  border-left: 1px solid rgb(235, 232, 232);
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   background-color: white;
-  height: 75vh;
-  width: 35vw;
+  height: 77vh;
+  width: 40vw;
 }
 .boxtop{
-  border-bottom: 1px solid rgb(216, 210, 210);
+  border-bottom: 1px solid rgb(235, 232, 232);
   width: 100%;
   background-color: white;
   display: flex;
@@ -302,26 +314,62 @@ justify-content:flex-start;
   
 }
 .online{
-  border-left: 1px solid rgb(216, 210, 210);
+  border-left: 1px solid rgb(235, 232, 232);
   height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   background-color: white;
-  height: 75vh;
+  height: 77vh;
   width: 20vw;
+  overflow-y: scroll;
 }
 .onlineuser{
+  display: flex;
   width: 100%;
-  border-top: 1px solid rgb(216, 210, 210);
-  border-bottom: 1px solid rgb(216, 210, 210);
+  border-bottom: 1px solid rgb(235, 232, 232);
+  height: 3vmax;
+  justify-content: space-between;
+  padding: 0vmax;
+  align-items: center;
 }
 .top{
-  border-bottom: 1px solid rgb(216, 210, 210);
-  height: 8vh;
+  border-bottom: 1px solid rgb(235, 232, 232);
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+}
+.onlineitem{
+ opacity:0.6;
+ padding:1vmax;
+}
+.bluebadge{
+  background-color: blue;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  margin-right: 1vmax;
+}
+.greybadge{
+  background-color: rgb(235, 227, 227);
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  margin-right: 1vmax;
+}
+.messaged{
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: 100%;
+}
+.ownmessage{
+  float: right;
+  color:red;
+}
+.message{
+  float:left;
+  color:blue;
 }

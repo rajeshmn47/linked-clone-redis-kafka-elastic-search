@@ -9,9 +9,16 @@ const mongoose = require("mongoose");
         sender: {
           type: String,
         },
+        reciever:{
+            type:String,
+        },
         text: {
           type: String,
         },
+        seen: {
+            type:Boolean,
+            default:false,
+        }
       },
       { timestamps: true }
     );
