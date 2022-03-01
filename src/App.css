@@ -4,10 +4,37 @@
 }
 a{
   text-decoration:none;
+  color:black;
+}
+.contained{
+    padding:10vmax;
+    background-color: rgba(199, 193, 206, 0.877);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.selected{
+  color:red;
+}
+a:hover{
+  color: blue;
 }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.sent{
+  display: flex;
+  justify-content: center;
+  padding: 1vmax;
+  align-items: center;
+  height: 2vmax;
+  border-radius: 1vmax;
+  background-color: blue;
+  color: white;
+  margin-bottom:1vmax;
+  width: 12vmax;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -213,4 +240,88 @@ justify-content:flex-start;
   padding: 1vmax;
   width:45vw;
  
+}
+.chatcontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  border-radius: 5px;
+}
+.mestitle{
+  height:2vmax;
+  opacity: 0.8;
+  padding: 1vmax;
+  background-color: white;
+}
+.messages{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+ width:25vw;
+ background-color: white;
+ height: 75vh;
+}
+.messagercontainer{
+  width: 100%;
+  background-color: white;
+  height: 75vh;
+}
+.chatbox{
+  border-left: 1px solid rgb(216, 210, 210);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  height: 75vh;
+  width: 35vw;
+}
+.boxtop{
+  border-bottom: 1px solid rgb(216, 210, 210);
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.messagebox{
+  padding: 1vmax;
+  height: 3vmax;
+  outline: none;
+  border: none;
+  background-color: rgb(198, 198, 207);
+}
+.messagebutton{
+  background-color: blue;
+  color: white;
+  padding: 1vmax;
+  outline: none;
+  border: none;
+  
+}
+.online{
+  border-left: 1px solid rgb(216, 210, 210);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  height: 75vh;
+  width: 20vw;
+}
+.onlineuser{
+  width: 100%;
+  border-top: 1px solid rgb(216, 210, 210);
+  border-bottom: 1px solid rgb(216, 210, 210);
+}
+.top{
+  border-bottom: 1px solid rgb(216, 210, 210);
+  height: 8vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

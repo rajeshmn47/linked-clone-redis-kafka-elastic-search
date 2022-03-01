@@ -29,6 +29,7 @@ const io = require("socket.io")(8000, {
   
     //take userId and socketId from user
     socket.on("addUser", (userId) => {
+      console.log(userId)
       addUser(userId, socket.id);
       io.emit("getUsers", users);
     });

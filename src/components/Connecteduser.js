@@ -13,7 +13,7 @@ export const Connecteduser=(usermail)=>{
     return(
         <>
     <div className="usercard">
-        <img src={ima} alt='' style={{border:'3px solid red',borderRadius:'50%'}}/>
+        <img src={ima} alt='' style={{border:'3px solid red',borderRadius:'50%'}} width='70'/>
         {use?.first_name}
         <button className='buttons'>message</button>
 <button className='buttons'>cancel</button>

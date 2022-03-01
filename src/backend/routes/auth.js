@@ -198,12 +198,35 @@ router.post('/respondtorequest',async function(req,res,next){
   const user=await User.findOne({email:{$eq:req.body.useremail }})
   user.connections.push({email:req.body.email,first_name:req.body.first_name,last_name:'kjh',job_title:'doctor',
 experience:55})
+var pendingcon=user.pending
+console.log(pendingcon,'rjkl')
+var p=[]
+for(var i=0;i<pendingcon.length;i++){
+  console.log(pendingcon.length,'uio')
+  console.log(pendingcon[0].email,'raji')
+  console.log(i)
+  if(pendingcon[i].email===req.body.email){
+    pendingcon.splice(i,1)
+    var dataChange={$set:{pending: pendingcon }}
+    await User.updateOne({email:req.body.useremail},dataChange)
+  }
+}
+
   await user.save()
   console.log(user)
   console.log('responding')
   const user1=await User.findOne({email:{$eq:req.body.email }})
   user1.connections.push({email:user.email,first_name:user.first_name,last_name:user.last_name,
   job_title:'kas',experience:3})
+  var pendingcon=user1.waiting
+var p=[]
+for(var i=0;i<pendingcon.length;i++){
+  if(pendingcon[i].email===req.body.useremail){
+    pendingcon.splice(i,1)
+    var dataChange={$set:{waiting: pendingcon }}
+    await User.updateOne({email:req.body.email},dataChange)
+  }
+}
   await user1.save()
   console.log(user1,'iamsexy')
   }

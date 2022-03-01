@@ -36,7 +36,7 @@ setPosts(data.data)
     }
     return(
         <>
-          {user&&<Navbar user={user} logout={logout}/>}
+      
 <div className='container'>
     
 <Share/>
