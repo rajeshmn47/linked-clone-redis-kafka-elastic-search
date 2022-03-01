@@ -18,7 +18,7 @@ setUse(r.data.user)
        <div className='usercardd'>
           
        <img src={use?.profilePicture?`http://127.0.0.1:3001/images/${use.profilePicture}`:`http://127.0.0.1:3001/images/noprofile.jpeg`} 
-       style={{borderRadius:'50%'}}height='30'  width='30'/>
+       style={{borderRadius:'50%'}} height='30'  width='30'/>
    
         <div style={{display:'block',marginLeft:'5px'}}>
         {use?.first_name}</div>

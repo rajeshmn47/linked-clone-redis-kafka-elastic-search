@@ -1,4 +1,5 @@
 const auth = require('./routes/auth');
+const message = require('./routes/messaging');
 const express=require('express')
 const cors =require('cors')
 const mongoose=require('mongoose')
@@ -11,6 +12,7 @@ app.use(cors())
 const path = require("path");
 app.use(express.json());
 app.use("/auth", auth);
+app.use("/message", message);
 const url = "http://localhost:3000";
 //const url = "hosting url";
 app.use(cors({ origin: url, credentials: true }));

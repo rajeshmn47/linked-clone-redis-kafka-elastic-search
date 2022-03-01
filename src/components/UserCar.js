@@ -21,7 +21,7 @@ const reject=async (email)=>{
     return(
         <>
     <div className="usercard">
-        <img src={ima} alt='' style={{border:'5px solid red',borderRadius:'50%'}}/>
+        <img src={ima} alt='' width='70' style={{border:'5px solid red',borderRadius:'50%'}}/>
 {email}
 <button className='buttons' onClick={()=>accept(email)}>accept</button>
 <button className='buttons' onClick={()=>reject(email)}>cancel</button>

@@ -8,9 +8,11 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import Collapse from '@material-ui/core/Collapse';
 import {BrowserRouter,Routes,Route,Link,useNavigate} from 'react-router-dom'
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export const Navbar=()=>{
+    const[selected,setSelected]=useState(0)
     const {user}= useSelector((state) => state.user);
     const navigate=useNavigate()
     const logout=(e)=>{
@@ -18,6 +20,10 @@ export const Navbar=()=>{
         navigate('/')
       }
     console.log(user)
+const selectnav=(i)=>{
+    console.log(i)
+setSelected(i)
+}
     return(
         <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',alignItems:'center',zIndex:'10000',padding:'1vmax',position:'fixed',width:'100vw'}}>
         <div style={{flex:1,marginTop:'0px',}}>
@@ -27,19 +33,19 @@ export const Navbar=()=>{
             <SearchIcon/>
             <input type='text' placeholder='search jobs' style={{height:'3vmax',backgroundColor:'rgba(163, 153, 173, 0.877)',border:'none',outline:'none'}}/></div>
         <div style={{display:'flex',justifyContent:'space-evenly',alignItems:'center',flex:6,opacity:'0.5',padding:'5px',fontSize:'1vmax'}}>
-        <Link to='/home'><div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+        <Link to='/home'><div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} onClick={()=>selectnav(0)} className={selected===0?'selected':'ok'}>
             <HomeIcon/>Home</div></Link>
             <Link to='/connections'>
-        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}><PeopleIcon/>My network</div>
+        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} onClick={()=>selectnav(1)} className={selected===1?'selected':'ok'}><PeopleIcon/>My network</div>
         </Link>
         <Link to='/notifications'>
-        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} onClick={()=>selectnav(2)} className={selected===2?'selected':'ok'}>
             <NotificationsIcon/>Notifications</div></Link>
             <Link to='/jobs'>
-        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}><WorkIcon/>Jobs</div>
+        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} onClick={()=>selectnav(3)} className={selected===3?'selected':'ok'}><WorkIcon/>Jobs</div>
         </Link>
         <Link to='/messaging'>
-        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} onClick={()=>selectnav(4)} className={selected===4?'selected':'ok'}>
             <TelegramIcon/>Messaging</div></Link>
         </div>
     

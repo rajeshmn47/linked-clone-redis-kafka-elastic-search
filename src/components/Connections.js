@@ -93,7 +93,7 @@ if (liked){
     return(
         <>
         <div className='usercard'>
-            <img src={img} alt='' style={{border:'3px solid red',borderRadius:'50%'}}/>
+            <img src={img} alt='' style={{borderRadius:'50%'}} width='70'/>
      <p className='greyfonts'>{usermail.email}</p>
         <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'waiting':'Connect'}</button>
         </div>
@@ -103,13 +103,13 @@ if (liked){
 
     return(
         <>
-        {user&&<Navbar user={user} logout={logout}/>}
+     
        
-        <div style={{display:'flex'}} className='container'>
-        <div className='side'>rajesh</div>
-      
+        <div style={{display:'flex'}} className='contained'>
        
       
+       
+      <div className='sent'>Connected Users</div>
        <div className='userslist'>
        {users&&user?.connections?.map((item,index)=>
        <>
@@ -118,11 +118,12 @@ if (liked){
         )}
 
 </div>
-<div style={{display:'flex'}} className='container'>
+</div>
+<div style={{display:'flex'}} className='contained'>
             <div style={{flex:'1'}}>
        
       
-        <div className='userslist'>
+        <div className='userslist' >
         {users&&users.map((item,index)=>
         <>
         {user&&<Usercard  k='liked' from={user}  usermail={item} pendinglist={pendinglist}/>}
@@ -130,19 +131,20 @@ if (liked){
          )}
 </div>
 </div>
+
 </div>
-</div>
-<h1 style={{marginLeft:'40vw',color:'red',width:'50vw'}}>sent connections</h1>
-<div className='container'>
-  
-<div style={{marginLeft:'20vw',width:'70vw'}}>
+
+<div className='contained'>
+<span style={{margin:'2vw 0vw',color:'white',width:'40vw',backgroundColor:'blue'}}
+className='sent'>sent connections</span>
+
 <div className='userslist'>{user?.waiting?.map((q)=><UserCard user={q} />)}</div>
+
 </div>
-</div>
-<div className='container'>
+<div className='contained'>
   
-<div style={{marginLeft:'20vw',width:'70vw'}}>
-<div className='userslist'>{user?.pending?.map((q)=><UserCar user1={q} />)}</div>
+<div>
+<div className='userslist'>{user?.pending?user?.pending?.map((q)=><UserCar user1={q} />):'no requests'}</div>
 </div>
 </div>
      </>
