@@ -8,7 +8,7 @@ useEffect(async()=>{
 const r=await axios.get(`http://127.0.0.1:3001/auth/getuser/${id}`)
 
 setUser(r.data.user)
-},[])
+},[user])
     return(
        <>
        <div className='usercardd'>

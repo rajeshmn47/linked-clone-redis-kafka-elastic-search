@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-
+import {format} from 'timeago.js'
 
 export const Message=({m,own,last})=>{
 
@@ -8,7 +8,11 @@ console.log(last)
         <>
         <div className={own?"ownmessage":"message"}>
 {m.text}
-{last&&(m.seen?'seen':'not seen')}
+
+</div>
+<div className={own?"right":"left"}>
+    {format(m.createdAt)}
+{own&&last&&(m.seen?'seen':' not seen')}
 </div>
 </>
     )
