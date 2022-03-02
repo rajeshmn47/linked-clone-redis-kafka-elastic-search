@@ -38,17 +38,19 @@ setMessages(data?.data)
         socket.current = io("ws://localhost:8000");
         {user&&socket.current.emit('addUser',user?._id)}
         socket.current.on("getUsers", (data) => {
-      
+      console.log(data)
+      setOnlineusers(data)
            });
         socket.current.on("getMessage", (data) => {
            
   
         });
-      }, []);
+      }, [user]);
       useEffect(()=>{
-const a=users&&users?.filter((u)=> onlineusers?.map((o)=>(o.userId===u._id)))
+const a=users&&users?.filter((u)=> onlineusers?.map((o)=>!(o.userId===u._id)))
+console.log(a)
 setOnlinefriends(a)
-      },[])
+      },[users,onlineusers])
       const logout=(e)=>{
         localStorage.removeItem('server_token')
         navigate('/')

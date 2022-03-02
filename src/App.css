@@ -367,9 +367,43 @@ justify-content:flex-start;
 }
 .ownmessage{
   float: right;
-  color:red;
+  color:white;
+  background-color: blue;
+  min-width:4vw;
+  min-height: 4vh;
+  border-radius: 1vmax;
+  margin: 5px;
+  text-align: center;
+  padding: 1vmax;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clear: both;
 }
 .message{
   float:left;
-  color:blue;
+  color: black;
+  background-color: #d4d3d3;
+  min-width:4vw;
+  min-height: 4vh;
+  border-radius: 1vmax;
+  margin: 5px;
+  text-align: center;
+  padding: 1vmax;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clear: both;
+}
+.right{
+  float: right;
+  clear: both;
+  font-size: small;
+  padding-right: 5px;
+}
+.left{
+  float: left;
+  clear: both;
+  font-size: small;
+  padding-right: 5px;
 }

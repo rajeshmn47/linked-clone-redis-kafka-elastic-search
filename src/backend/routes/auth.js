@@ -319,5 +319,11 @@ res.status(200).json(post);
       console.log(req.body)
 res.status(200).json(post);
   })
+  router.get('/getnotifications',async(req,res)=>{
+    const notifications=await Notification.find()
+    res.status(200).json({
+      data:notifications
+    });
+  })
 
 module.exports = router;

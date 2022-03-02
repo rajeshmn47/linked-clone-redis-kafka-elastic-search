@@ -62,7 +62,7 @@ router.post("/currentchat", async (req, res) => {
   }
 });
 
-router.get("/conversations/first_nmae/second_name", async (req, res) => {
+router.get("/conversations/first_name/second_name", async (req, res) => {
   try {
     const messages = await Message.findById(req.params.id);
    
