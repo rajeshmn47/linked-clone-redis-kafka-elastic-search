@@ -8,8 +8,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import Collapse from '@material-ui/core/Collapse';
 import {BrowserRouter,Routes,Route,Link,useNavigate} from 'react-router-dom'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 export const Navbar=()=>{
     const[selected,setSelected]=useState(0)
@@ -24,6 +25,13 @@ const selectnav=(i)=>{
     console.log(i)
 setSelected(i)
 }
+useEffect(async()=>{
+    console.log(user)
+    const id=user._id
+     const data=await axios.get(`http://127.0.0.1:3001/auth/notifications/${id}`)
+        console.log(data)   
+    },[user])
+
     return(
         <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',alignItems:'center',zIndex:'10000',padding:'1vmax',position:'fixed',width:'100vw'}}>
         <div style={{flex:1,marginTop:'0px',}}>
