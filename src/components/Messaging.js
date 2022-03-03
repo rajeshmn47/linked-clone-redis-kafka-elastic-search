@@ -103,7 +103,7 @@ if(scroll.current){
 </>)}
 </div>
 <div className="boxtop">
-    <form onSubmit={handlesubmit}>
+    <form onSubmit={handlesubmit} className='boxtop'>
 <input placeholder="Write a message..." className="messagebox" onChange={(e)=>setText(e.target.value)} />
 <input type='submit' value='send' className='messagebutton'/>
 </form>

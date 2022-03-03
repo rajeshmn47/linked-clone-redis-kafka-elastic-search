@@ -232,6 +232,7 @@ width:20%;
 top:0;
 left:0;
 justify-content:flex-start;
+align-items: center;
 }
 .comment{
   background-color: rgb(203, 241, 215);
@@ -406,4 +407,8 @@ justify-content:flex-start;
   clear: both;
   font-size: small;
   padding-right: 5px;
+}
+.notifications{
+  display: block;
+  flex-direction: column;
 }

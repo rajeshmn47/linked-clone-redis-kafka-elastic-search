@@ -289,6 +289,7 @@ res.status(200).json({
 
   router.post('/likehandler',async(req,res)=>{
     var post=await Post.findById(req.body.postid)
+    console.log(post)
     var toid=post.userId
   var touser=await User.findById(toid)
 
@@ -305,25 +306,61 @@ await post.save()
         time: new Date().getTime(),
         status: "not_read",
         to: touser.email,
-        type : "like"
+        type : "like",
+        body:fr.first_name+" has liked ure post!"
       });
+      await notification.save()
     }
 res.status(200).json(post);
   })
 
   router.post('/addcomment',async(req,res)=>{
     var post=await Post.findById(req.body.postid)
-    
+    var fr=await User.findById(req.body.userid)
+    var to=await User.findById(post.userId)
       post.comments.push({text:req.body.commenttext,commenterId:req.body.userid})
       await post.save()
+      var notification=new Notification({  from:fr.first_name+" has liked ure post!",time: new Date().getTime(),status: "not_read",
+      to: to.email,
+      type : "like"})
+      await notification.save()
       console.log(req.body)
 res.status(200).json(post);
   })
-  router.get('/getnotifications',async(req,res)=>{
-    const notifications=await Notification.find()
+  router.get('/getnotifications',checkloggedinuser,async(req,res)=>{
+    var notifications=await Notification.find({to:{$eq:req.body.uidfromtoken }})
+   
     res.status(200).json({
       data:notifications
     });
+    for(var i=0;i<notifications.length;i++)
+    {
+      notifications[i].status='read'
+      await notifications[i].save()
+    }
   })
-
+  router.get('/notifications/:id',async(req,res)=>{
+    try{
+    console.log(req.params.id,'neiufvuiejfcfefjdddddddddddd')
+    var user=await User.findById(req.params.id)
+    console.log(user,'rajnnnejknjkeejevbhjbvhjebvhj')
+    var notifications=await Notification.find({to:{$eq:user.email }})
+   console.log(notifications)
+  var k=0
+    for( var i=0;i<notifications.length;i++)
+    {
+      if(notifications[i].status=== 'not_read'){
+      k=k+1
+      }
+    }
+    console.log(k,'kaiser')
+    res.status(200).json({
+      data:k
+    })}
+    catch{
+      res.status(200).json({
+        data:'error'
+      })
+    }
+  })
 module.exports = router;

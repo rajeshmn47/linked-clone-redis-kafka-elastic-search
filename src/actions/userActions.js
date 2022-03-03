@@ -9,6 +9,8 @@ import {
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
     LOGOUT_SUCCESS,
+    LOAD_USER_NOTIFICATIONS_SUCCESS,
+    LOADING_NOTIFICATIONS_FAILED,
     LOGOUT_FAIL,
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
@@ -86,6 +88,19 @@ import {
       {method:'get',headers: { ...headers,'Content-Type': 'application/json',servertoken:servertoken }})
   console.log(data.message[0])
       dispatch({ type: LOAD_USER_SUCCESS, payload: data.message[0] });
+    } catch (error) {
+      dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+    }
+  };
+  
+  export const getnotifications = () => async (dispatch) => {
+    try {
+        const servertoken=localStorage.getItem('server_token')&&localStorage.getItem('server_token') 
+      dispatch({ type: LOAD_USER_REQUEST });
+   const {data}=  await axios("http://127.0.0.1:3001/auth/getnotifications", 
+      {method:'get',headers: { ...headers,'Content-Type': 'application/json',servertoken:servertoken }})
+      console.log(data.data)
+      dispatch({ type: LOAD_USER_NOTIFICATIONS_SUCCESS, payload: data.data });
     } catch (error) {
       dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
     }

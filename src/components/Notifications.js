@@ -1,22 +1,25 @@
 import { io } from "socket.io-client";
 import { useRef,useEffect,useState } from "react";
 import Navbar from './Navbar'
-import { useSelector } from "react-redux";
 import {useNavigate} from 'react-router-dom'
+import {getnotifications} from '../actions/userActions'
 import axios from "axios";
+import { useDispatch,useSelector } from "react-redux";
+
 export const Notifications=()=>{
-    const[notifications,setNotifications]=useState()
+    const dispatch=useDispatch()
+    const {notifications}= useSelector((state) => state.user);
     useEffect(async()=>{
         console.log('noifications')
-const data=await axios.get("http://127.0.0.1:3001/auth/getnotifications")
-console.log(data)
-setNotifications(data?.data)
+dispatch(getnotifications())
     },[])
   
     return(
         <>
           <div className="container">
-{notifications?.length>0?<><h1>u have notifications</h1></>:<h5>no notifications</h5>}
+              <div className="notifications">
+{notifications?.length>0?<>{notifications.map((n)=><div className="notification">{n.body}</div>)}</>:<h5>no notifications</h5>}
+</div>
 </div>
 </>
     )

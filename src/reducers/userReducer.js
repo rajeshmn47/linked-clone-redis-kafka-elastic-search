@@ -39,6 +39,8 @@ import {
     USER_DETAILS_SUCCESS,
     USER_DETAILS_FAIL,
     CLEAR_ERRORS,
+    LOAD_USER_NOTIFICATIONS_SUCCESS,
+    LOADING_NOTIFICATIONS_FAILED
   } from "../constants/userConstants";
   
   export const userReducer = (state = { user: {} }, action) => {
@@ -59,7 +61,12 @@ import {
           isAuthenticated: true,
           user: action.payload,
         };
-  
+  case  LOAD_USER_NOTIFICATIONS_SUCCESS:
+    return{
+      ...state,
+      loading:false,
+      notifications:action.payload,
+    }
       case LOGOUT_SUCCESS:
         return {
           loading: false,
