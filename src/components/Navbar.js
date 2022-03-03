@@ -48,7 +48,15 @@ useEffect(async()=>{
         </Link>
         <Link to='/notifications'>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} onClick={()=>selectnav(2)} className={selected===2?'selected':'ok'}>
-            <NotificationsIcon/>Notifications</div></Link>
+     
+       
+          <Badge badgeContent={4} color="error">
+          <NotificationIcon  />
+</Badge>
+     
+   
+   
+            Notifications</div></Link>
             <Link to='/jobs'>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} onClick={()=>selectnav(3)} className={selected===3?'selected':'ok'}><WorkIcon/>Jobs</div>
         </Link>
