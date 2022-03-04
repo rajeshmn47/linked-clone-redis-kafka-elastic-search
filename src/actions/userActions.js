@@ -100,7 +100,7 @@ import {
    const {data}=  await axios("http://127.0.0.1:3001/auth/getnotifications", 
       {method:'get',headers: { ...headers,'Content-Type': 'application/json',servertoken:servertoken }})
       console.log(data.data)
-      dispatch({ type: LOAD_USER_NOTIFICATIONS_SUCCESS, payload: data.data });
+      dispatch({ type: LOAD_USER_NOTIFICATIONS_SUCCESS, payload: data.data.reverse() });
     } catch (error) {
       dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
     }

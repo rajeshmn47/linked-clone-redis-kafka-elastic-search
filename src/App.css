@@ -71,14 +71,14 @@ a{
 }
 .buttons{
   background-color: transparent;
-  width:10vw;
+  width:11vw;
  color:blue;
  border:1px solid blue;
   border-radius: 25px;
   outline:none;
   height:3vmax;
-  margin-top: 1vmax;
-  margin-left: 1vmax;
+  margin-top: 4vmax;
+  margin-left: 0vmax;
 }
 .butter{
   background-color: rgb(112, 112, 175);
@@ -107,16 +107,17 @@ a{
 }
 .usercard{
   display:flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
   margin:5px;
-  height:40vh;
-  width:15vw;
-  padding:1vmax;
+  height:35vh;
+  width:11vw;
+  padding:4vmax;
   overflow: hidden;
   border: 1px solid rgb(201, 200, 202);
   border-radius: 10px;
+  padding:1vmax;
 }
 .greyfonts{
   opacity: 0.9;
@@ -140,8 +141,8 @@ a{
   border-radius: 10px;
 }
 .sharepost{
-  height:5vmax;
-  width:60vw;
+  height:3vmax;
+  width:40vw;
   padding: 1vmax;
   border:none;
   outline: none;
@@ -155,18 +156,18 @@ a{
   flex-direction: column;
   align-items: center;
   background-color: white;
-  width: 65vw;
+  width: 52vw;
   position:relative;
   padding-top:1vmax;
-border-radius: 1vmax;
+border-radius: 2vmax;
 }
 .postbtn{
   border: none;
   outline: none;
   color: white;
   background-color: blue;
-  width:10vw;
-  height: 5vmax;
+  width:6vw;
+  height: 3vmax;
   margin-top: 2vmax;
   border-radius: 1vmax;
   position:absolute;
@@ -182,8 +183,9 @@ border-radius: 1vmax;
 }
 .shareOptions{
   display: flex;
- margin-top: 2vmax;
+ margin-top: 1vmax;
   align-items: center;
+  justify-content: space-evenly;
 }
 .shareOption{
   display: flex;
@@ -411,4 +413,65 @@ align-items: center;
 .notifications{
   display: block;
   flex-direction: column;
+}
+.notification{
+  display: flex;
+  background-color: white;
+  height: 5vmax;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vw;
+  border-bottom: 1px solid rgb(235, 225, 225);
+  padding: 1vmax;
+  font: 1vmax roboto;
+  
+}
+.newnotification{
+  display: flex;
+  background-color: rgb(159, 154, 212);
+  height: 5vmax;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vw;
+  border-bottom: 1px solid rgb(235, 225, 225);
+  padding: 1vmax;
+  font: 1vmax roboto;
+}
+.usercart{
+  display: flex;
+}
+.editform{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: white;
+  padding: 1vmax;
+  height: 30vh;
+}
+.messagecontainerslctd{
+  display: flex;
+  background-color: rgb(175, 187, 219);
+  height: 10vh;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1vmax;
+  width: 100%;
+  border-bottom: 1px solid rgb(235, 232, 232);
+}
+.messagexist{
+  display: flex;
+  width: 80%;
+  height: 100%;
+  justify-content:space-between;
+  padding:2.2vmax ;
+  align-items: center;
+}
+.notexist{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+  padding: 2.2vmax;
 }

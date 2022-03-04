@@ -21,6 +21,7 @@ export const Messaging=()=>{
     const[messages,setMessages]=useState(null)
     const [onlinefriends,setOnlinefriends]=useState()
     const[onlineusers,setOnlineusers]=useState()
+    const[arrivalmessage,setArrivalmessage]=useState()
 
     useEffect(async()=>{
         const tata =await axios.get(`http://127.0.0.1:3001/message/conversations/${user._id}`)
@@ -41,13 +42,13 @@ setMessages(data?.data)
       console.log(data)
       setOnlineusers(data)
            });
-        socket.current.on("getMessage", (data) => {
-           
-  
+        socket.current.on("getMessage", (data) => {       
+  setArrivalmessage(data)
         });
       }, [user]);
       useEffect(()=>{
-const a=users&&users?.filter((u)=> onlineusers?.map((o)=>!(o.userId===u._id)))
+const a=users&&users?.filter((u)=> onlineusers?.some((o)=>o.userId===u._id))
+
 console.log(a)
 setOnlinefriends(a)
       },[users,onlineusers])
@@ -71,9 +72,11 @@ const receiverId = currentchat.members.find(
   await axios.post('http://127.0.0.1:3001/message/currentchat',
 {conversationId:currentchat._id,sender:user?._id,reciever:receiverId,text:text})
 const data =await axios.get(`http://127.0.0.1:3001/message/currentchat/${currentchat?._id}`)
+setText('')
 setMessages(data?.data)
 if(scroll.current){
     scroll.current.scrollIntoView({behavior:"smooth"})}
+    
 }
     return(
         <>
@@ -85,7 +88,7 @@ if(scroll.current){
 </div>
 <div className="messagercontainers">
 {conversations&&conversations?.map((o)=><>  
- <div className='messagecontainer' onClick={()=>setCurrentchat(o)}><Conversation o={o}/>
+ <div className={currentchat?._id===o._id?'messagecontainerslctd':'messagecontainer'} onClick={()=>setCurrentchat(o)}><Conversation o={o}/>
 </div>
 </>)}
 
@@ -104,7 +107,7 @@ if(scroll.current){
 </div>
 <div className="boxtop">
     <form onSubmit={handlesubmit} className='boxtop'>
-<input placeholder="Write a message..." className="messagebox" onChange={(e)=>setText(e.target.value)} />
+<input placeholder="Write a message..." className="messagebox" onChange={(e)=>setText(e.target.value)} value={text} />
 <input type='submit' value='send' className='messagebutton'/>
 </form>
 </div>
@@ -114,14 +117,19 @@ if(scroll.current){
 <h5 style={{padding:'1vmax'}} >Online</h5>
 </div>
 
-<div className="onlineuser">
-    <div className="onlineitem">
-<h5>rajesh</h5>
-</div>
-<div className="bluebadge">
+
+    {onlinefriends?.map((o)=><>
+        <div className="onlineuser">
+    <div className='onlineitem'>
+       <h5> {o.username}</h5>
+    </div>
+    <div className="bluebadge">
 
 </div>
 </div>
+    </>)}
+  
+
 
 <div className="onlineuser">
     <div className="onlineitem">

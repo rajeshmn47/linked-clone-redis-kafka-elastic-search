@@ -4,17 +4,25 @@ import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import HomeIcon from '@material-ui/icons/Home';
 import TelegramIcon from '@material-ui/icons/Telegram';
+import React from 'react';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import Collapse from '@material-ui/core/Collapse';
 import {BrowserRouter,Routes,Route,Link,useNavigate} from 'react-router-dom'
 import { useState,useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import axios from 'axios';
+import Badge from '@material-ui/core/Badge';
+import store from '../store'
+import { loadUser } from '../actions/userActions';
 
 export const Navbar=()=>{
     const[selected,setSelected]=useState(0)
+    const dispatch=useDispatch()
     const {user}= useSelector((state) => state.user);
+    const[notificationscount,setNotificationscount]=React.useState(0);
+    const[messagescount,setMessagescount]=React.useState(0);
+    const [count, setCount] = React.useState(1);
     const navigate=useNavigate()
     const logout=(e)=>{
         localStorage.removeItem('server_token')
@@ -25,12 +33,32 @@ const selectnav=(i)=>{
     console.log(i)
 setSelected(i)
 }
+
 useEffect(async()=>{
     console.log(user)
     const id=user._id
      const data=await axios.get(`http://127.0.0.1:3001/auth/notifications/${id}`)
-        console.log(data)   
+        console.log(data.data)  
+        if (data.data.data==='error' )
+        {
+            console.log('error')
+        }
+        else{
+            console.log(data.data.data)
+            setNotificationscount(data.data.data)
+        }
+        const d=await axios.get(`http://127.0.0.1:3001/message/messages/${id}`)
+        console.log(d)
+        if (d.data.data==='error' )
+        {
+            console.log('error')
+        }
+        else{
+            console.log(d.data.data)
+            setMessagescount(d.data.data)
+        }
     },[user])
+ 
 
     return(
         <div  style={{backgroundColor:'white',zIndex:'100',display:'flex',alignItems:'center',zIndex:'10000',padding:'1vmax',position:'fixed',width:'100vw'}}>
@@ -50,8 +78,8 @@ useEffect(async()=>{
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} onClick={()=>selectnav(2)} className={selected===2?'selected':'ok'}>
      
        
-          <Badge badgeContent={4} color="error">
-          <NotificationIcon  />
+          <Badge badgeContent={notificationscount} color="error">
+          <NotificationsIcon  />
 </Badge>
      
    
@@ -62,7 +90,11 @@ useEffect(async()=>{
         </Link>
         <Link to='/messaging'>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}} onClick={()=>selectnav(4)} className={selected===4?'selected':'ok'}>
-            <TelegramIcon/>Messaging</div></Link>
+            
+          <Badge badgeContent={messagescount} color="error">
+          <TelegramIcon/>
+</Badge>
+           Messaging</div></Link>
         </div>
     
         <div style={{flex:2,padding:'5px'}}>

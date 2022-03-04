@@ -72,4 +72,29 @@ router.get("/conversations/first_name/second_name", async (req, res) => {
   }
 });
 
+router.get('/messages/:id',async(req,res)=>{
+  try{
+  console.log(req.params.id,'neiufvuiejfcfefjdddddddddddd')
+  var user=await User.findById(req.params.id)
+  console.log(user,'rajnnnejknjkeejevbhjbvhjebvhj')
+  var messages=await Message.find({reciever:{$eq:req.params.id }})
+ console.log(messages)
+var k=0
+  for( var i=0;i<messages.length;i++)
+  {
+    if(messages[i].seen=== false){
+    k=k+1
+    }
+  }
+  console.log(k,'kaiser')
+  res.status(200).json({
+    data:k
+  })}
+  catch{
+    res.status(200).json({
+      data:'error'
+    })
+  }
+})
+
 module.exports = router;
