@@ -9,7 +9,7 @@ export const Connecteduser=(usermail)=>{
         const r=await axios.get(`http://127.0.0.1:3001/auth/getuserbymail/${usermail.email}`)
         console.log(r,'kkkk')
         setUse(r.data.user)
-        },[])
+        },[use])
     return(
         <>
     <div className="usercard">

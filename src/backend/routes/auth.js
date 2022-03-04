@@ -320,9 +320,9 @@ res.status(200).json(post);
     var to=await User.findById(post.userId)
       post.comments.push({text:req.body.commenttext,commenterId:req.body.userid})
       await post.save()
-      var notification=new Notification({  from:fr.first_name+" has liked ure post!",time: new Date().getTime(),status: "not_read",
+      var notification=new Notification({  from:fr.first_name+" has commented on ure post!",time: new Date().getTime(),status: "not_read",
       to: to.email,
-      type : "like"})
+      type : "comment"})
       await notification.save()
       console.log(req.body)
 res.status(200).json(post);
@@ -363,4 +363,5 @@ res.status(200).json(post);
       })
     }
   })
+ 
 module.exports = router;

@@ -14,17 +14,17 @@ import { loadUser } from './actions/userActions';
 import { useDispatch,useSelector } from 'react-redux';
 import Navbar from './components/Navbar'
 import Notifications from './components/Notifications';
-
+import Editprofile from './components/Editprofile';
+import store from './store'
 
 const App = () => {
  
   const { isAuthenticated, user } = useSelector((state) => state.user);
   console.log(user)
  const dispatch=useDispatch()
-useEffect(()=>{
-  dispatch(loadUser())
-},[])
-
+ useEffect(async()=>{
+  store.dispatch(loadUser());
+      },[dispatch])
   return (
 <>
 <BrowserRouter>
@@ -37,6 +37,7 @@ useEffect(()=>{
   <Route path='/home' element={<Home/>}/>
   <Route path='/messaging' element={<Messaging/>}/>
   <Route path='/jobs' element={<Jobs/>}/>
+  <Route path='/editprofile' element={<Editprofile/>}/>
 <Route path='/notifications' element={<Notifications/>}/>
 </Routes>
 </BrowserRouter>
