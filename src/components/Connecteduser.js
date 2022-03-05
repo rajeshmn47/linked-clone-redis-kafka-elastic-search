@@ -14,7 +14,7 @@ export const Connecteduser=(usermail)=>{
         <>
     <div className="usercard">
         <img src={ima} alt='' style={{border:'3px solid red',borderRadius:'50%'}} width='70'/>
-        {use?.first_name}
+        {use?.email.slice(0,15)}
         <button className='buttons'>message</button>
 <button className='buttons'>cancel</button>
 </div>

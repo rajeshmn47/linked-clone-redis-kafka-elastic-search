@@ -21,7 +21,7 @@ setUse(r.data.user)
        style={{borderRadius:'50%',marginRight:'1vmax'}}height='30' width='30'/>
    
         <div style={{display:'block'}}>
-        {use?.first_name}</div>
+        {use?.username}</div>
         <span style={{marginLeft:'35vw',display:'flex',fontSize:'1vmax'}}>
           {format(post.createdAt)}
           {user&&post&&user._id===post.userId?<LongMenu post={post} />:null}

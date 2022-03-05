@@ -94,7 +94,7 @@ if (liked){
         <>
         <div className='usercard'>
             <img src={img} alt='' style={{borderRadius:'50%'}} width='70'/>
-     <p className='greyfonts'>{usermail.email}</p>
+     <p className='greyfonts'>{usermail.email.slice(0,15)}</p>
         <button className='buttons' onClick={()=>connect(usermail.email)}>{connec?'waiting':'Connect'}</button>
         </div>
         </>
