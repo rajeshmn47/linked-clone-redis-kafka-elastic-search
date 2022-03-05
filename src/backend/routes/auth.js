@@ -14,6 +14,7 @@ const server_secret_key='iamrajesh675gjhchshskijdiucacuijnuijniusjiudjcsdijcjsij
 app.use(bodyParser)
 router.post("/signup", async function(req, res, next) {
     var passwordToSave = bcrypt.hashSync(req.body.password, salt);
+    req.body.recruiter
     console.log(req.body)
     const userdetails= new User({
         first_name:req.body.first_name,

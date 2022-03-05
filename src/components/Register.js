@@ -15,6 +15,7 @@ export const Register=()=>{
     const[email,setEmail]=useState('')
     const [password,setPassword]=useState()
     const [confirmpassword,setConfirmpassword]=useState('')
+    const[recruiter_flag,setRecruiter_flag]=useState('')
 const handlesubmit= async(e)=>{
 e.preventDefault()
 const newPost = {
@@ -60,6 +61,9 @@ Sign<span  style={{marginLeft:'1vmax'}}>in</span></button></div>
 <TextField placeholder='email' variant='outlined' value={email} onChange={(e)=>setEmail(e.target.value)} />
 <TextField placeholder=' password' variant='outlined' value={password} onChange={(e)=>setPassword(e.target.value)} />
 <TextField placeholder=' confirm password' variant='outlined' value={confirmpassword} onChange={(e)=>setConfirmpassword(e.target.value)} />
+recruiter_flag<input type='checked' value='krs' onClick={(e)=>setRecruiter_flag(e.target.checked)}/>
+
+
 <p>Already have account <span><Link to={'/'}>sign in now</Link></span></p>
 <Button type='submit' style={{borderRadius:'2vmax',height:'4vmax', backgroundColor:'blue',color:'white'}}>Register</Button>
 </div>

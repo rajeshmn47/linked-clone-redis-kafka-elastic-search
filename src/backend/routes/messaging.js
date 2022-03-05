@@ -50,6 +50,26 @@ router.get("/currentchat/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+ 
+router.get("/currentchatseen/:id", async (req, res) => {
+  try {
+    const conversations = await Message.find({
+      conversationId: req.params.id
+    });
+    console.log(conversations)
+    res.status(200).json(conversations);
+    for( var i=0;i<conversations.length;i++)
+  {
+    if(conversations[i].seen=== false){
+    
+    conversations[i].seen= true
+    await conversations[i].save()
+    }
+  }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.post("/currentchat", async (req, res) => {
   try {

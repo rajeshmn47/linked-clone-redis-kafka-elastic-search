@@ -29,7 +29,7 @@ export const Messaging=()=>{
 setConversations(tata.data)
     },[user])
 useEffect(async()=>{
-    const data =await axios.get(`http://127.0.0.1:3001/message/currentchat/${currentchat?._id}`)
+    const data =await axios.get(`http://127.0.0.1:3001/message/currentchatseen/${currentchat?._id}`)
 console.log(data)
 setMessages(data?.data)
 },[currentchat])
@@ -111,7 +111,9 @@ if(scroll.current){
 <input type='submit' value='send' className='messagebutton'/>
 </form>
 </div>
-    </>:<h5>No Convo</h5>}</div>
+    </>:<h5 style={{fontSize:'5vmax',opacity:'0.1',padding:'1vmax',display:'flex',justifyContent:'center'
+    ,alignItems:'center'}}>
+        Please open a Conversation to start a chat</h5>}</div>
     <div className='online'>
         <div className="top">
 <h5 style={{padding:'1vmax'}} >Online</h5>

@@ -7,7 +7,7 @@ export const UserCard=(user)=>{
         <>
     <div className="usercard">
         <img src={ima} alt='' width='70' style={{border:'3px solid red',borderRadius:'50%'}}/>
-{email}
+{email.slice(0,14)}
 <button className='buttons'>cancel</button>
 </div>
 </>
