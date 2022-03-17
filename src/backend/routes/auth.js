@@ -21,6 +21,7 @@ router.post("/signup", async function(req, res, next) {
         last_name:req.body.last_name,
         email:req.body.email,
         password:passwordToSave,
+        recruiter_flag:req.body.recruiter_flag
     })
     await userdetails.save()
  

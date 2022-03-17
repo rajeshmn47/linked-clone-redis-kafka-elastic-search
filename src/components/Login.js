@@ -9,12 +9,13 @@ import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import axios from 'axios'
 import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom'
+import { loadUser } from '../actions/userActions';
 
 export const Login=()=>{
     const navigate=useNavigate()
-  
+  const dispatch=useDispatch()
 useEffect(() => {
  if(localStorage.getItem('server_token')){
      navigate('/home')
@@ -36,6 +37,7 @@ const [user,setUser]=useState()
        const g=await axios.post("http://127.0.0.1:3001/auth/login", newPost);
        console.log(g.data.server_token)
        localStorage.setItem("server_token",g.data.server_token);
+       dispatch(loadUser())
     navigate('/home')  
         }
     return(

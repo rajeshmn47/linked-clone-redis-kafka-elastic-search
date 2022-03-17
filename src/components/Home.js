@@ -1,5 +1,5 @@
 import Navbar from './Navbar'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import {useState,useRef,useEffect} from 'react'
 import Share from './Share'
@@ -24,6 +24,7 @@ export const Home=()=>{
     const share=useRef()
     const navigate=useNavigate()
     const {user}= useSelector((state) => state.user);
+    const dispatch=useDispatch()
     console.log(user)
     useEffect(async()=>{
 const {data}=await axios.get('http://127.0.0.1:3001/auth/getposts')

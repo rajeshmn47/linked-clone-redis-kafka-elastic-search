@@ -8,6 +8,8 @@ import WorkIcon from '@material-ui/icons/Work';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import axios from 'axios'
+import Checkbox from '@material-ui/core/Checkbox';
+
 
 export const Register=()=>{
     const[first_name,setFirst_name]=useState('')
@@ -15,7 +17,8 @@ export const Register=()=>{
     const[email,setEmail]=useState('')
     const [password,setPassword]=useState()
     const [confirmpassword,setConfirmpassword]=useState('')
-    const[recruiter_flag,setRecruiter_flag]=useState('')
+    const[recruiter_flag,setRecruiter_flag]=useState(false)
+    console.log(recruiter_flag)
 const handlesubmit= async(e)=>{
 e.preventDefault()
 const newPost = {
@@ -23,6 +26,7 @@ const newPost = {
     last_name: last_name,
     password:password,
     email:email,
+    recruiter_flag:recruiter_flag
   };
 await axios.post("http://127.0.0.1:3001/auth/signup", newPost);
 }
@@ -50,10 +54,7 @@ Sign<span  style={{marginLeft:'1vmax'}}>in</span></button></div>
 </div>
 <div style={{display:'flex',height:'40vw',justifyContent:'center'}}>
  <div style={{display:'flex',flexDirection:'column',justifyContent:'space-evenly'}}>
-   <div style={{color:'rgb(119, 28, 28)',opacity:'0.9'}}>
-   <h1>Welcome To Your</h1>
-   <h1>Proffessional Community</h1>
-   </div>
+ 
 <form onSubmit={handlesubmit}>
    <div style={{display:'flex',flexDirection:'column',height:'70vh',justifyContent:'space-between'}}>
 <TextField placeholder='firstname' variant='outlined' value={first_name} onChange={(e)=>setFirst_name(e.target.value)} />
@@ -61,16 +62,21 @@ Sign<span  style={{marginLeft:'1vmax'}}>in</span></button></div>
 <TextField placeholder='email' variant='outlined' value={email} onChange={(e)=>setEmail(e.target.value)} />
 <TextField placeholder=' password' variant='outlined' value={password} onChange={(e)=>setPassword(e.target.value)} />
 <TextField placeholder=' confirm password' variant='outlined' value={confirmpassword} onChange={(e)=>setConfirmpassword(e.target.value)} />
-recruiter_flag<input type='checked' value='krs' onClick={(e)=>setRecruiter_flag(e.target.checked)}/>
-
-
+<div style={{display:'flex',alignItems:'center',width:'30vw'}}>
+<p>Select checkbox if you are a  Recruiter:</p>
+<Checkbox checked={recruiter_flag} onChange={(e)=>setRecruiter_flag(e.target.checked)} name="antoine" />
+</div>
 <p>Already have account <span><Link to={'/'}>sign in now</Link></span></p>
 <Button type='submit' style={{borderRadius:'2vmax',height:'4vmax', backgroundColor:'blue',color:'white'}}>Register</Button>
 </div>
 </form>
  </div>
  
- <div style={{marginLeft:'1vmax'}}>
+ <div style={{marginLeft:'4vmax'}}>
+ <div style={{color:'rgb(119, 28, 28)',opacity:'0.9',marginLeft:'2vmax'}}>
+   <h1>Welcome To Your</h1>
+   <h1>Proffessional Community</h1>
+   </div>
    <img src={im} height='500'/>
  </div>
 </div>
