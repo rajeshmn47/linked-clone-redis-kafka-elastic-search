@@ -6,6 +6,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Messaging from './components/Messaging'
 import Connections from './components/Connections'
+import Postjob from './components/postjob'
 import Home from './components/Home'
 import Jobs from './components/Jobs'
 import {BrowserRouter,Routes,Route,Link,useNavigate} from 'react-router-dom'
@@ -38,6 +39,7 @@ const App = () => {
   <Route path='/messaging' element={<Messaging/>}/>
   <Route path='/jobs' element={<Jobs/>}/>
   <Route path='/editprofile' element={<Editprofile/>}/>
+  <Route path='/postjob' element={<Postjob/>}/>
 <Route path='/notifications' element={<Notifications/>}/>
 </Routes>
 </BrowserRouter>

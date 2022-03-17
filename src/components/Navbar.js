@@ -16,6 +16,7 @@ import Badge from '@material-ui/core/Badge';
 import store from '../store'
 import { loadUser } from '../actions/userActions';
 import {Button} from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add';
 
 export const Navbar=()=>{
     const[selected,setSelected]=useState(0)
@@ -105,8 +106,8 @@ useEffect(async()=>{
 Sign<span  style={{marginLeft:'1vmax'}}>in</span></button>:null} </div>
         <div style={{height:'2vmax',width:'40vw',alignItems:'center',padding:'0px 20px',display:'flex',justifyContent:'space-between'}}>
             {user&&<div style={{alignItems:'flex-end',float:'right'}}>U Are {user?.email}</div>}
-            {user?.recruiter_flag>0&&<Button variant='outlined'>Post a job
-            <Icon className="fa fa-plus-circle" color="primary" />
+            {user?.recruiter_flag>0&&<Button variant='outlined' onClick={()=>navigate('/postjob')}>Post a job
+            <AddIcon color='primary'/>
             </Button>}
             {user&&<div onClick={logout} style={{marginRight:'5vmax'}}>Logout</div>}
        
